@@ -14,15 +14,11 @@
 		D566199226B78F82008BACBF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BDB0C226B262DC0076374C /* ViewController.swift */; };
 		D566199326B78F82008BACBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BDB0BE26B262DC0076374C /* AppDelegate.swift */; };
 		D566199426B78F82008BACBF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BDB0C026B262DC0076374C /* SceneDelegate.swift */; };
-		D566199726B78F82008BACBF /* ToSouthMelbourne.gpx in Resources */ = {isa = PBXBuildFile; fileRef = D58DAE0826B6D5A7001E9521 /* ToSouthMelbourne.gpx */; };
 		D566199826B78F82008BACBF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5BDB0C926B262DD0076374C /* LaunchScreen.storyboard */; };
 		D566199926B78F82008BACBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5BDB0C726B262DD0076374C /* Assets.xcassets */; };
-		D566199A26B78F82008BACBF /* ToStKilda.gpx in Resources */ = {isa = PBXBuildFile; fileRef = D58DAE0926B6D5A7001E9521 /* ToStKilda.gpx */; };
 		D566199B26B78F82008BACBF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5BDB0C426B262DC0076374C /* Main.storyboard */; };
 		D577EF8426B534BD00A1FDF6 /* Database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D577EF8226B534BD00A1FDF6 /* Database.xcdatamodeld */; };
 		D577EF8626B5357B00A1FDF6 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = D577EF8526B5357B00A1FDF6 /* Global.swift */; };
-		D58DAE0A26B6D5A7001E9521 /* ToSouthMelbourne.gpx in Resources */ = {isa = PBXBuildFile; fileRef = D58DAE0826B6D5A7001E9521 /* ToSouthMelbourne.gpx */; };
-		D58DAE0B26B6D5A7001E9521 /* ToStKilda.gpx in Resources */ = {isa = PBXBuildFile; fileRef = D58DAE0926B6D5A7001E9521 /* ToStKilda.gpx */; };
 		D5BDB0BF26B262DC0076374C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BDB0BE26B262DC0076374C /* AppDelegate.swift */; };
 		D5BDB0C126B262DC0076374C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BDB0C026B262DC0076374C /* SceneDelegate.swift */; };
 		D5BDB0C326B262DC0076374C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BDB0C226B262DC0076374C /* ViewController.swift */; };
@@ -37,8 +33,6 @@
 		D56619A026B78F83008BACBF /* speedo copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "speedo copy-Info.plist"; path = "/Users/marcusmilne/Documents/Clients/Watchy/speedo/speedo copy-Info.plist"; sourceTree = "<absolute>"; };
 		D577EF8326B534BD00A1FDF6 /* Database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Database.xcdatamodel; sourceTree = "<group>"; };
 		D577EF8526B5357B00A1FDF6 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
-		D58DAE0826B6D5A7001E9521 /* ToSouthMelbourne.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ToSouthMelbourne.gpx; sourceTree = "<group>"; };
-		D58DAE0926B6D5A7001E9521 /* ToStKilda.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ToStKilda.gpx; sourceTree = "<group>"; };
 		D5BDB0BB26B262DC0076374C /* Speedo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Speedo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5BDB0BE26B262DC0076374C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5BDB0C026B262DC0076374C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,8 +82,6 @@
 		D5BDB0BD26B262DC0076374C /* speedo */ = {
 			isa = PBXGroup;
 			children = (
-				D58DAE0826B6D5A7001E9521 /* ToSouthMelbourne.gpx */,
-				D58DAE0926B6D5A7001E9521 /* ToStKilda.gpx */,
 				D5BDB0BE26B262DC0076374C /* AppDelegate.swift */,
 				D5BDB0C026B262DC0076374C /* SceneDelegate.swift */,
 				D5BDB0C226B262DC0076374C /* ViewController.swift */,
@@ -179,10 +171,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D566199726B78F82008BACBF /* ToSouthMelbourne.gpx in Resources */,
 				D566199826B78F82008BACBF /* LaunchScreen.storyboard in Resources */,
 				D566199926B78F82008BACBF /* Assets.xcassets in Resources */,
-				D566199A26B78F82008BACBF /* ToStKilda.gpx in Resources */,
 				D566199B26B78F82008BACBF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -191,10 +181,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D58DAE0A26B6D5A7001E9521 /* ToSouthMelbourne.gpx in Resources */,
 				D5BDB0CB26B262DD0076374C /* LaunchScreen.storyboard in Resources */,
 				D5BDB0C826B262DD0076374C /* Assets.xcassets in Resources */,
-				D58DAE0B26B6D5A7001E9521 /* ToStKilda.gpx in Resources */,
 				D5BDB0C626B262DC0076374C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
