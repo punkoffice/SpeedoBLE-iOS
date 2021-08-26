@@ -14,9 +14,11 @@ class Global {
     static var DBcontainer: NSPersistentContainer? = nil
     static var DBcontext: NSManagedObjectContext? = nil
     static var entSettings: NSEntityDescription? = nil
+    static var entSpeedAlarms: NSEntityDescription? = nil
     static var watchyName: String = "Watchy Speedo"
     static var speedFilter: Int = 60
-    static var DBitems: [Any]?
+    static var DBitemsSettings: [Any]?
+    static var DBitemsSpeed: [Any]?
     static var DBMOsettings: NSManagedObject? = nil
     static var peripheral: CBPeripheral? = nil
     static var bleTime: CBCharacteristic? = nil
@@ -24,11 +26,13 @@ class Global {
     static func setup() {
         Global.initDB()
         Global.loadSettings()
+        Global.loadSpeedAlarms()
     }
     
     static func initDB() {
         Global.DBcontext = Global.DBcontainer!.viewContext
         Global.entSettings = NSEntityDescription.entity(forEntityName: "Settings", in: Global.DBcontext!)
+        Global.entSpeedAlarms = NSEntityDescription.entity(forEntityName: "SpeedAlarms", in: Global.DBcontext!)
     }
     
     static func sendDisconnectSignal() {
@@ -39,11 +43,32 @@ class Global {
         }
     }
     
+    static func insertSpeedAlarm(speed: Int) {
+        let recSpeedAlarm = NSManagedObject(entity: Global.entSpeedAlarms!, insertInto: Global.DBcontext)
+        recSpeedAlarm.setValue(speed, forKey: "speed")
+        do {
+            try Global.DBcontext!.save()
+        } catch {
+            print("Could not save speed alarm: \(error)")
+        }
+        print("Inserted speed: ",speed)
+    }
+    
+    static func loadSpeedAlarms() {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SpeedAlarms")
+        do {
+            DBitemsSpeed = try Global.DBcontext!.fetch(fetchRequest)
+            print("Speed alarms: ",DBitemsSpeed!.count)
+        } catch {
+            print("Could not load speed alarms from DB")
+        }
+    }
+
     static func loadSettings() {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Settings")
         do {
-            DBitems = try Global.DBcontext!.fetch(fetchRequest)
-            if (DBitems!.count == 0) {
+            DBitemsSettings = try Global.DBcontext!.fetch(fetchRequest)
+            if (DBitemsSettings!.count == 0) {
                 let recSettings = NSManagedObject(entity: Global.entSettings!, insertInto: Global.DBcontext)
                 recSettings.setValue(watchyName, forKey: "watchyName")
                 recSettings.setValue(speedFilter, forKey: "speedFilter")
@@ -53,7 +78,7 @@ class Global {
                     print("Could not save \(error)")
                 }
             } else {
-                DBMOsettings = DBitems![0] as? NSManagedObject
+                DBMOsettings = DBitemsSettings![0] as? NSManagedObject
                 watchyName = DBMOsettings!.value(forKey: "watchyName") as! String
                 speedFilter = DBMOsettings!.value(forKey: "speedFilter") as! Int
             }

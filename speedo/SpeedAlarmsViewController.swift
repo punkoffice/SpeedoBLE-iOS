@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SpeedAlarmsViewController: UITableViewController {
 
@@ -21,10 +22,20 @@ class SpeedAlarmsViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
-    @objc func addSpeed() {
+    @objc func addSpeedRow() {
         print("Adding speed")
         showEmptySpeedAlarmsCount = true
         self.tableView.reloadData()
+    }
+    
+    @objc func saveSpeed(sender: extUITextField) {
+        print("Saving speed for: ",sender.indexPath!)
+        let intSpeed = Int(sender.text!) ?? 0
+        Global.insertSpeedAlarm(speed: intSpeed)
+    }
+    
+    @objc func deleteRow() {
+        print("Delete row")
     }
     
     @objc func closeViewController() {
@@ -44,6 +55,9 @@ class SpeedAlarmsViewController: UITableViewController {
         if (showEmptySpeedAlarmsCount) {
             rowCount += 1
         }
+        if (Global.DBitemsSpeed != nil) {
+            rowCount += Global.DBitemsSpeed!.count
+        }
         return rowCount
     }
 
@@ -52,17 +66,30 @@ class SpeedAlarmsViewController: UITableViewController {
         if (indexPath.row == tableView.numberOfRows(inSection: 0)-2) {
             if (showEmptySpeedAlarmsCount) {
                 cell = tableView.dequeueReusableCell(withIdentifier: "cellSpeed", for: indexPath)
+                let txtSpeed = cell.viewWithTag(1) as! extUITextField
+                let btnDelete = cell.viewWithTag(2) as! UIButton
+                txtSpeed.indexPath = indexPath.row
+                txtSpeed.addTarget(self, action: #selector(saveSpeed), for: .editingChanged)
+                btnDelete.addTarget(self, action: #selector(deleteRow), for: .touchUpInside)
             } else {
                 cell = tableView.dequeueReusableCell(withIdentifier: "cellSpeed", for: indexPath)
+                let txtSpeed = cell.viewWithTag(1) as! extUITextField
+                let DBMOspeed = Global.DBitemsSpeed![indexPath.row] as? NSManagedObject
+                let intSpeed = DBMOspeed!.value(forKey: "speed") as! Int
+                txtSpeed.text! = intSpeed.description
             }
         } else if (indexPath.row == tableView.numberOfRows(inSection: 0)-1) {
             cell = tableView.dequeueReusableCell(withIdentifier: "cellLast", for: indexPath)
             let btnAdd = cell.viewWithTag(5) as! UIButton
             let btnDone = cell.viewWithTag(6) as! UIButton
-            btnAdd.addTarget(self, action: #selector(addSpeed), for: .touchUpInside)
+            btnAdd.addTarget(self, action: #selector(addSpeedRow), for: .touchUpInside)
             btnDone.addTarget(self, action: #selector(closeViewController), for: .touchUpInside)
         } else {
             cell = tableView.dequeueReusableCell(withIdentifier: "cellSpeed", for: indexPath)
+            let txtSpeed = cell.viewWithTag(1) as! extUITextField
+            let DBMOspeed = Global.DBitemsSpeed![indexPath.row] as? NSManagedObject
+            let intSpeed = DBMOspeed!.value(forKey: "speed") as! Int
+            txtSpeed.text! = intSpeed.description
         }
         return cell
     }
@@ -116,4 +143,8 @@ class SpeedAlarmsViewController: UITableViewController {
     }
     */
 
+}
+
+class extUITextField: UITextField {
+    var indexPath: Int?
 }
