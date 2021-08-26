@@ -9,6 +9,8 @@ import UIKit
 
 class SpeedAlarmsViewController: UITableViewController {
 
+    var showEmptySpeedAlarmsCount = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,6 +23,8 @@ class SpeedAlarmsViewController: UITableViewController {
 
     @objc func addSpeed() {
         print("Adding speed")
+        showEmptySpeedAlarmsCount = true
+        self.tableView.reloadData()
     }
     
     @objc func closeViewController() {
@@ -36,12 +40,22 @@ class SpeedAlarmsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        var rowCount = 1
+        if (showEmptySpeedAlarmsCount) {
+            rowCount += 1
+        }
+        return rowCount
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell
-        if (indexPath.row == tableView.numberOfRows(inSection: 0)-1) {
+        if (indexPath.row == tableView.numberOfRows(inSection: 0)-2) {
+            if (showEmptySpeedAlarmsCount) {
+                cell = tableView.dequeueReusableCell(withIdentifier: "cellSpeed", for: indexPath)
+            } else {
+                cell = tableView.dequeueReusableCell(withIdentifier: "cellSpeed", for: indexPath)
+            }
+        } else if (indexPath.row == tableView.numberOfRows(inSection: 0)-1) {
             cell = tableView.dequeueReusableCell(withIdentifier: "cellLast", for: indexPath)
             let btnAdd = cell.viewWithTag(5) as! UIButton
             let btnDone = cell.viewWithTag(6) as! UIButton
@@ -50,7 +64,6 @@ class SpeedAlarmsViewController: UITableViewController {
         } else {
             cell = tableView.dequeueReusableCell(withIdentifier: "cellSpeed", for: indexPath)
         }
-
         return cell
     }
 
