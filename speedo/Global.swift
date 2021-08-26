@@ -54,6 +54,18 @@ class Global {
         print("Inserted speed: ",speed)
     }
     
+    static func changeSpeedAlarm(speed: Int, index: Int) {
+        let DBMOspeed = DBitemsSpeed![index] as? NSManagedObject
+        if (DBMOspeed != nil) {
+            DBMOspeed!.setValue(speed, forKey: "speed")
+            do {
+                try Global.DBcontext!.save()
+            } catch {
+                print("Could not save \(error)")
+            }
+        }
+    }
+    
     static func loadSpeedAlarms() {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SpeedAlarms")
         do {

@@ -29,9 +29,17 @@ class SpeedAlarmsViewController: UITableViewController {
     }
     
     @objc func saveSpeed(sender: extUITextField) {
-        print("Saving speed for: ",sender.indexPath!)
-        let intSpeed = Int(sender.text!) ?? 0
-        Global.insertSpeedAlarm(speed: intSpeed)
+        if (sender.text != nil) {
+            print("Saving speed for: ",sender.indexPath!)
+            let rowIdx = sender.indexPath!
+            let intSpeed = Int(sender.text!) ?? 0
+            if (showEmptySpeedAlarmsCount && rowIdx == tableView.numberOfRows(inSection: 0)-2) {
+                Global.insertSpeedAlarm(speed: intSpeed)
+            } else {
+                print("Change alarm: ",rowIdx)
+                Global.changeSpeedAlarm(speed: intSpeed, index: rowIdx)
+            }
+        }
     }
     
     @objc func deleteRow() {
@@ -74,9 +82,13 @@ class SpeedAlarmsViewController: UITableViewController {
             } else {
                 cell = tableView.dequeueReusableCell(withIdentifier: "cellSpeed", for: indexPath)
                 let txtSpeed = cell.viewWithTag(1) as! extUITextField
+                let btnDelete = cell.viewWithTag(2) as! UIButton
                 let DBMOspeed = Global.DBitemsSpeed![indexPath.row] as? NSManagedObject
                 let intSpeed = DBMOspeed!.value(forKey: "speed") as! Int
+                txtSpeed.indexPath = indexPath.row
                 txtSpeed.text! = intSpeed.description
+                txtSpeed.addTarget(self, action: #selector(saveSpeed), for: .editingChanged)
+                btnDelete.addTarget(self, action: #selector(deleteRow), for: .touchUpInside)
             }
         } else if (indexPath.row == tableView.numberOfRows(inSection: 0)-1) {
             cell = tableView.dequeueReusableCell(withIdentifier: "cellLast", for: indexPath)
@@ -89,7 +101,11 @@ class SpeedAlarmsViewController: UITableViewController {
             let txtSpeed = cell.viewWithTag(1) as! extUITextField
             let DBMOspeed = Global.DBitemsSpeed![indexPath.row] as? NSManagedObject
             let intSpeed = DBMOspeed!.value(forKey: "speed") as! Int
+            let btnDelete = cell.viewWithTag(2) as! UIButton
+            txtSpeed.indexPath = indexPath.row
             txtSpeed.text! = intSpeed.description
+            txtSpeed.addTarget(self, action: #selector(saveSpeed), for: .editingChanged)
+            btnDelete.addTarget(self, action: #selector(deleteRow), for: .touchUpInside)
         }
         return cell
     }
