@@ -51,6 +51,7 @@ class Global {
         } catch {
             print("Could not save speed alarm: \(error)")
         }
+        DBitemsSpeed?.append(recSpeedAlarm)
         print("Inserted speed: ",speed)
     }
     

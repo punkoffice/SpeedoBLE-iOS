@@ -23,20 +23,18 @@ class SpeedAlarmsViewController: UITableViewController {
     }
 
     @objc func addSpeedRow() {
-        print("Adding speed")
         showEmptySpeedAlarmsCount = true
         self.tableView.reloadData()
     }
     
     @objc func saveSpeed(sender: extUITextField) {
         if (sender.text != nil) {
-            print("Saving speed for: ",sender.indexPath!)
             let rowIdx = sender.indexPath!
             let intSpeed = Int(sender.text!) ?? 0
             if (showEmptySpeedAlarmsCount && rowIdx == tableView.numberOfRows(inSection: 0)-2) {
+                showEmptySpeedAlarmsCount = false
                 Global.insertSpeedAlarm(speed: intSpeed)
             } else {
-                print("Change alarm: ",rowIdx)
                 Global.changeSpeedAlarm(speed: intSpeed, index: rowIdx)
             }
         }
