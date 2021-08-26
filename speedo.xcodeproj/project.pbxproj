@@ -17,6 +17,10 @@
 		D566199826B78F82008BACBF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5BDB0C926B262DD0076374C /* LaunchScreen.storyboard */; };
 		D566199926B78F82008BACBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5BDB0C726B262DD0076374C /* Assets.xcassets */; };
 		D566199B26B78F82008BACBF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5BDB0C426B262DC0076374C /* Main.storyboard */; };
+		D57414A026D77B1A0015877A /* alarm.png in Resources */ = {isa = PBXBuildFile; fileRef = D574149F26D77B1A0015877A /* alarm.png */; };
+		D57414A126D77B1A0015877A /* alarm.png in Resources */ = {isa = PBXBuildFile; fileRef = D574149F26D77B1A0015877A /* alarm.png */; };
+		D57414A326D77D8D0015877A /* SpeedAlarmsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57414A226D77D8D0015877A /* SpeedAlarmsViewController.swift */; };
+		D57414A426D77D8D0015877A /* SpeedAlarmsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57414A226D77D8D0015877A /* SpeedAlarmsViewController.swift */; };
 		D577EF8426B534BD00A1FDF6 /* Database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D577EF8226B534BD00A1FDF6 /* Database.xcdatamodeld */; };
 		D577EF8626B5357B00A1FDF6 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = D577EF8526B5357B00A1FDF6 /* Global.swift */; };
 		D5BDB0BF26B262DC0076374C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BDB0BE26B262DC0076374C /* AppDelegate.swift */; };
@@ -31,6 +35,8 @@
 		D565B98426B3854900D0F718 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		D566199F26B78F82008BACBF /* speedo test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "speedo test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D56619A026B78F83008BACBF /* speedo copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "speedo copy-Info.plist"; path = "/Users/marcusmilne/Documents/Clients/Watchy/speedo/speedo copy-Info.plist"; sourceTree = "<absolute>"; };
+		D574149F26D77B1A0015877A /* alarm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alarm.png; sourceTree = "<group>"; };
+		D57414A226D77D8D0015877A /* SpeedAlarmsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedAlarmsViewController.swift; sourceTree = "<group>"; };
 		D577EF8326B534BD00A1FDF6 /* Database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Database.xcdatamodel; sourceTree = "<group>"; };
 		D577EF8526B5357B00A1FDF6 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		D5BDB0BB26B262DC0076374C /* Speedo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Speedo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +88,7 @@
 		D5BDB0BD26B262DC0076374C /* speedo */ = {
 			isa = PBXGroup;
 			children = (
+				D574149F26D77B1A0015877A /* alarm.png */,
 				D5BDB0BE26B262DC0076374C /* AppDelegate.swift */,
 				D5BDB0C026B262DC0076374C /* SceneDelegate.swift */,
 				D5BDB0C226B262DC0076374C /* ViewController.swift */,
@@ -92,6 +99,7 @@
 				D565B98426B3854900D0F718 /* LocationManager.swift */,
 				D577EF8226B534BD00A1FDF6 /* Database.xcdatamodeld */,
 				D577EF8526B5357B00A1FDF6 /* Global.swift */,
+				D57414A226D77D8D0015877A /* SpeedAlarmsViewController.swift */,
 			);
 			path = speedo;
 			sourceTree = "<group>";
@@ -172,6 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D566199826B78F82008BACBF /* LaunchScreen.storyboard in Resources */,
+				D57414A126D77B1A0015877A /* alarm.png in Resources */,
 				D566199926B78F82008BACBF /* Assets.xcassets in Resources */,
 				D566199B26B78F82008BACBF /* Main.storyboard in Resources */,
 			);
@@ -182,6 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5BDB0CB26B262DD0076374C /* LaunchScreen.storyboard in Resources */,
+				D57414A026D77B1A0015877A /* alarm.png in Resources */,
 				D5BDB0C826B262DD0076374C /* Assets.xcassets in Resources */,
 				D5BDB0C626B262DC0076374C /* Main.storyboard in Resources */,
 			);
@@ -194,6 +204,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D57414A426D77D8D0015877A /* SpeedAlarmsViewController.swift in Sources */,
 				D566198F26B78F82008BACBF /* LocationManager.swift in Sources */,
 				D566199026B78F82008BACBF /* Database.xcdatamodeld in Sources */,
 				D566199126B78F82008BACBF /* Global.swift in Sources */,
@@ -207,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D57414A326D77D8D0015877A /* SpeedAlarmsViewController.swift in Sources */,
 				D565B98526B3854900D0F718 /* LocationManager.swift in Sources */,
 				D577EF8426B534BD00A1FDF6 /* Database.xcdatamodeld in Sources */,
 				D577EF8626B5357B00A1FDF6 /* Global.swift in Sources */,

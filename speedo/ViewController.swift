@@ -51,6 +51,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "segSpeedAlarms") {
+            let svc = segue.destination as? SpeedAlarmsViewController
+            svc?.modalPresentationStyle = .fullScreen
+        }
+    }
+    
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
