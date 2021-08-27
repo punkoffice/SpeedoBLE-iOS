@@ -30,7 +30,7 @@ class SpeedAlarmsViewController: UITableViewController {
     
     @objc func saveSpeed(sender: extUITextField) {
         if (sender.text != nil) {
-            let rowIdx = sender.indexPath!
+            let rowIdx = sender.row!
             let intSpeed = Int(sender.text!) ?? 0
             if (showEmptySpeedAlarmsCount && rowIdx == tableView.numberOfRows(inSection: 0)-2) {
                 showEmptySpeedAlarmsCount = false
@@ -41,8 +41,16 @@ class SpeedAlarmsViewController: UITableViewController {
         }
     }
     
-    @objc func deleteRow() {
-        print("Delete row")
+    @objc func deleteRow(sender: extUIButton) {
+        let rowIdx = sender.row!
+        let idxPath = IndexPath(row: rowIdx, section: 0)
+        if (showEmptySpeedAlarmsCount && rowIdx == tableView.numberOfRows(inSection: 0)-2) {
+            showEmptySpeedAlarmsCount = false
+            self.tableView.deleteRows(at: [idxPath], with: UITableView.RowAnimation.automatic)
+        } else {
+            Global.removeSpeedAlarm(index: rowIdx)
+            self.tableView.deleteRows(at: [idxPath], with: UITableView.RowAnimation.automatic)
+        }
     }
     
     @objc func resetAlarms() {
@@ -78,19 +86,21 @@ class SpeedAlarmsViewController: UITableViewController {
             if (showEmptySpeedAlarmsCount) {
                 cell = tableView.dequeueReusableCell(withIdentifier: "cellSpeed", for: indexPath)
                 let txtSpeed = cell.viewWithTag(1) as! extUITextField
-                let btnDelete = cell.viewWithTag(2) as! UIButton
-                txtSpeed.indexPath = indexPath.row
+                let btnDelete = cell.viewWithTag(2) as! extUIButton
+                txtSpeed.row = indexPath.row
                 txtSpeed.addTarget(self, action: #selector(saveSpeed), for: .editingChanged)
+                btnDelete.row = indexPath.row
                 btnDelete.addTarget(self, action: #selector(deleteRow), for: .touchUpInside)
             } else {
                 cell = tableView.dequeueReusableCell(withIdentifier: "cellSpeed", for: indexPath)
                 let txtSpeed = cell.viewWithTag(1) as! extUITextField
-                let btnDelete = cell.viewWithTag(2) as! UIButton
+                let btnDelete = cell.viewWithTag(2) as! extUIButton
                 let DBMOspeed = Global.DBitemsSpeed![indexPath.row] as? NSManagedObject
                 let intSpeed = DBMOspeed!.value(forKey: "speed") as! Int
-                txtSpeed.indexPath = indexPath.row
+                txtSpeed.row = indexPath.row
                 txtSpeed.text! = intSpeed.description
                 txtSpeed.addTarget(self, action: #selector(saveSpeed), for: .editingChanged)
+                btnDelete.row = indexPath.row
                 btnDelete.addTarget(self, action: #selector(deleteRow), for: .touchUpInside)
             }
         } else if (indexPath.row == tableView.numberOfRows(inSection: 0)-1) {
@@ -106,10 +116,11 @@ class SpeedAlarmsViewController: UITableViewController {
             let txtSpeed = cell.viewWithTag(1) as! extUITextField
             let DBMOspeed = Global.DBitemsSpeed![indexPath.row] as? NSManagedObject
             let intSpeed = DBMOspeed!.value(forKey: "speed") as! Int
-            let btnDelete = cell.viewWithTag(2) as! UIButton
-            txtSpeed.indexPath = indexPath.row
+            let btnDelete = cell.viewWithTag(2) as! extUIButton
+            txtSpeed.row = indexPath.row
             txtSpeed.text! = intSpeed.description
             txtSpeed.addTarget(self, action: #selector(saveSpeed), for: .editingChanged)
+            btnDelete.row = indexPath.row
             btnDelete.addTarget(self, action: #selector(deleteRow), for: .touchUpInside)
         }
         return cell
@@ -118,54 +129,12 @@ class SpeedAlarmsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 77.0
     }
-    
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 class extUITextField: UITextField {
-    var indexPath: Int?
+    var row: Int?
+}
+
+class extUIButton: UIButton {
+    var row: Int?
 }

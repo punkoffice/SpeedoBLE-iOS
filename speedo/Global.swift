@@ -87,6 +87,22 @@ class Global {
         rebuildSpeedAlarmList()
     }
     
+    static func removeSpeedAlarm(index: Int) {
+        if (DBitemsSpeed != nil) {
+            let DBMOspeed = DBitemsSpeed![index] as? NSManagedObject
+            if (DBMOspeed != nil) {
+                Global.DBcontext?.delete(DBMOspeed!)
+            }
+            do {
+                try Global.DBcontext!.save()
+            } catch {
+                print("Could not save \(error)")
+            }
+            DBitemsSpeed!.remove(at: index)
+            rebuildSpeedAlarmList()
+        }
+    }
+
     static func loadSpeedAlarms() {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SpeedAlarms")
         do {
