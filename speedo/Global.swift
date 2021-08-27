@@ -70,6 +70,8 @@ class Global {
             mutableSet.sort()
             orderedSpeed = mutableSet
         }
+        pastThresholdCount = 0
+        speedIdx = 0
     }
     
     static func changeSpeedAlarm(speed: Int, index: Int) {
