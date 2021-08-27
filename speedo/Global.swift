@@ -19,6 +19,8 @@ class Global {
     static var speedFilter: Int = 60
     static var DBitemsSettings: [Any]?
     static var DBitemsSpeed: [Any]?
+    static var orderedSpeed: [Any]?
+    static var speedIdx = 0
     static var DBMOsettings: NSManagedObject? = nil
     static var peripheral: CBPeripheral? = nil
     static var bleTime: CBCharacteristic? = nil
@@ -27,6 +29,7 @@ class Global {
         Global.initDB()
         Global.loadSettings()
         Global.loadSpeedAlarms()
+        Global.rebuildSpeedAlarmList()
     }
     
     static func initDB() {
@@ -52,7 +55,20 @@ class Global {
             print("Could not save speed alarm: \(error)")
         }
         DBitemsSpeed?.append(recSpeedAlarm)
-        print("Inserted speed: ",speed)
+        rebuildSpeedAlarmList()
+    }
+    
+    static func rebuildSpeedAlarmList() {
+        var unorderedSpeed: [Int]? = []
+        orderedSpeed?.removeAll()
+        if (DBitemsSpeed != nil) {
+            for DBMOspeed in DBitemsSpeed! {
+                unorderedSpeed?.append((DBMOspeed as AnyObject).value(forKey: "speed") as! Int)
+            }
+            var mutableSet = NSMutableOrderedSet(array: unorderedSpeed!).array as! [Int]
+            mutableSet.sort()
+            orderedSpeed = mutableSet
+        }
     }
     
     static func changeSpeedAlarm(speed: Int, index: Int) {
@@ -65,6 +81,7 @@ class Global {
                 print("Could not save \(error)")
             }
         }
+        rebuildSpeedAlarmList()
     }
     
     static func loadSpeedAlarms() {
