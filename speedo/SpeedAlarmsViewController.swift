@@ -45,6 +45,10 @@ class SpeedAlarmsViewController: UITableViewController {
         print("Delete row")
     }
     
+    @objc func resetAlarms() {
+        Global.rebuildSpeedAlarmList()
+    }
+    
     @objc func closeViewController() {
         dismiss(animated: true, completion: nil)
     }
@@ -93,8 +97,10 @@ class SpeedAlarmsViewController: UITableViewController {
             cell = tableView.dequeueReusableCell(withIdentifier: "cellLast", for: indexPath)
             let btnAdd = cell.viewWithTag(5) as! UIButton
             let btnDone = cell.viewWithTag(6) as! UIButton
+            let btnReset = cell.viewWithTag(7) as! UIButton
             btnAdd.addTarget(self, action: #selector(addSpeedRow), for: .touchUpInside)
             btnDone.addTarget(self, action: #selector(closeViewController), for: .touchUpInside)
+            btnReset.addTarget(self, action: #selector(resetAlarms), for: .touchUpInside)
         } else {
             cell = tableView.dequeueReusableCell(withIdentifier: "cellSpeed", for: indexPath)
             let txtSpeed = cell.viewWithTag(1) as! extUITextField
