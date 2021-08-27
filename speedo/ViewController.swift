@@ -23,6 +23,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     private var peripheral: CBPeripheral!
     private var bleSpeed: CBCharacteristic!
     private var bleTime: CBCharacteristic!
+    private var bleAlarm: CBCharacteristic!
     private let locationManager = LocationManager.shared
     private var isConnected = false
     private var testTimer: Timer!
@@ -95,6 +96,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 }
                 if (Global.pastThresholdCount > 2) {
                     print("ALARM ",Global.speedIdx)
+                    if (self.bleAlarm != nil) {
+                        self.peripheral.writeValue(currentAlarm.description.data(using: .utf8)!, for: self.bleAlarm, type: .withResponse)
+                    }
                     Global.speedIdx += 1
                     Global.pastThresholdCount = 0
                 }
@@ -109,7 +113,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             let distanceMetres = "25.1797835042561151119"
             let combinedString = speed.description + ":" + distanceMetres
             peripheral.writeValue(combinedString.description.data(using: .utf8)!, for: self.bleSpeed, type: .withResponse)
-            testCurrentSpeed += 2
+            testCurrentSpeed += 1
             checkSpeedAlarm(speed: speed)
         }
     }
@@ -216,6 +220,7 @@ extension ViewController: CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         let speedoUUID = "BEB5483E-36E1-4688-B7F5-EA07361B26A8"
         let timeUUID = "AD0794BA-F0DC-11EB-9A03-0242AC130003"
+        let alarmUUID = "DC4F89AF-C7D6-48B3-B713-43B4E835C965"
         if let charac = service.characteristics {
             for characteristic in charac {
                 //MARK:- Light Value
@@ -228,6 +233,8 @@ extension ViewController: CBPeripheralDelegate {
                     self.bleTime = characteristic
                     Global.bleTime = characteristic
                     sendTime()
+                } else if characteristic.uuid.description == alarmUUID {
+                    self.bleAlarm = characteristic
                 }
             }
         }
@@ -254,6 +261,7 @@ extension ViewController: CLLocationManagerDelegate {
                 if (isConnected) {
                     if (self.bleSpeed != nil) {
                         #if !FAKEGPS
+                            self.checkSpeedAlarm(speed: wholeSpeed)
                             self.peripheral.writeValue(combinedString.data(using: .utf8)!, for: self.bleSpeed, type: .withResponse)
                         #endif
                     }
