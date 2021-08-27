@@ -26,6 +26,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     private let locationManager = LocationManager.shared
     private var isConnected = false
     private var testTimer: Timer!
+    private var testCurrentSpeed = 3
     private var maxSpeed = 0
     private var lastLocation: CLLocation?
     private var lastTime: Date?
@@ -83,12 +84,33 @@ class ViewController: UIViewController, UITextFieldDelegate {
         locationManager.startUpdatingLocation()
     }
     
+    private func checkSpeedAlarm(speed: Int) {
+        if (Global.orderedSpeed!.count > 0) {
+            if (Global.speedIdx < Global.orderedSpeed!.count) {
+                let currentAlarm = Global.orderedSpeed![Global.speedIdx] as! Int
+                if (speed >= currentAlarm) {
+                    Global.pastThresholdCount += 1
+                } else {
+                    Global.pastThresholdCount = 0
+                }
+                if (Global.pastThresholdCount > 2) {
+                    print("ALARM ",Global.speedIdx)
+                    Global.speedIdx += 1
+                    Global.pastThresholdCount = 0
+                }
+            }
+        }
+    }
+    
     @objc private func testUpdate() {
         if (isConnected) {
-            let speed = Int.random(in: 1...30)
+            //let speed = Int.random(in: 1...30)
+            let speed = testCurrentSpeed
             let distanceMetres = "25.1797835042561151119"
             let combinedString = speed.description + ":" + distanceMetres
             peripheral.writeValue(combinedString.description.data(using: .utf8)!, for: self.bleSpeed, type: .withResponse)
+            testCurrentSpeed += 2
+            checkSpeedAlarm(speed: speed)
         }
     }
     

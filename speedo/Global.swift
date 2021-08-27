@@ -21,6 +21,7 @@ class Global {
     static var DBitemsSpeed: [Any]?
     static var orderedSpeed: [Any]?
     static var speedIdx = 0
+    static var pastThresholdCount = 0
     static var DBMOsettings: NSManagedObject? = nil
     static var peripheral: CBPeripheral? = nil
     static var bleTime: CBCharacteristic? = nil
