@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var lblConnected: UILabel!
     @IBOutlet weak var lblSpeed: UILabel!
     @IBOutlet weak var lblTopSpeed: UILabel!
+    @IBOutlet weak var lblDistance: UILabel!
     
     @IBOutlet weak var txtWatchyName: UITextField!
     @IBOutlet weak var txtSpeedFilter: UITextField!
@@ -122,6 +123,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             let strTotalKs = String(format: "%.1f", distanceKs)
             let combinedString = speed.description + ":" + distanceInMetres.description
             lblSpeed.text = speed.description
+            lblDistance.text = strTotalKs
             peripheral.writeValue(combinedString.description.data(using: .utf8)!, for: self.bleSpeed, type: .withResponse)
             testCurrentSpeed += 1
             checkSpeedAlarm(speed: speed)
@@ -271,6 +273,7 @@ extension ViewController: CLLocationManagerDelegate {
                     lblTopSpeed.text = wholeSpeed.description
                 }
                 lblSpeed.text = wholeSpeed.description
+                lblDistance.text = strTotalKs
                 let combinedString = wholeSpeed.description + ":" + distanceInMetres.description
                 if (isConnected) {
                     if (self.bleSpeed != nil) {
