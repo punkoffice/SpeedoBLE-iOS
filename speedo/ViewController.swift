@@ -12,9 +12,8 @@ import CoreLocation
 class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var lblConnected: UILabel!
-    @IBOutlet weak var lblLat: UILabel!
-    @IBOutlet weak var lblLong: UILabel!
     @IBOutlet weak var lblSpeed: UILabel!
+    @IBOutlet weak var lblTopSpeed: UILabel!
     
     @IBOutlet weak var txtWatchyName: UITextField!
     @IBOutlet weak var txtSpeedFilter: UITextField!
@@ -28,7 +27,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     private var isConnected = false
     private var testTimer: Timer!
     private var testCurrentSpeed = 3
-    private var maxSpeed = 0
+    private var topSpeed = 0
     private var totalDistance = 0
     private var lastLocation: CLLocation?
     private var lastTime: Date?
@@ -47,7 +46,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        startLocationUpdates()
+        #if !FAKEGPS
+            startLocationUpdates()
+        #endif
     }
     
     @IBAction func tappedView(_ sender: UITapGestureRecognizer) {
@@ -109,13 +110,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @objc private func testUpdate() {
         if (isConnected) {
-            //let speed = Int.random(in: 1...30)
-            let speed = testCurrentSpeed
+            let speed = Int.random(in: 1...30)
+            //let speed = testCurrentSpeed
+            if (speed > topSpeed) {
+                topSpeed = speed
+                lblTopSpeed.text = topSpeed.description
+            }
             let distanceInMetres = 200
             totalDistance += distanceInMetres
             let distanceKs = Double(totalDistance) / 1000.0
             let strTotalKs = String(format: "%.1f", distanceKs)
             let combinedString = speed.description + ":" + distanceInMetres.description
+            lblSpeed.text = speed.description
             peripheral.writeValue(combinedString.description.data(using: .utf8)!, for: self.bleSpeed, type: .withResponse)
             testCurrentSpeed += 1
             checkSpeedAlarm(speed: speed)
@@ -260,16 +266,16 @@ extension ViewController: CLLocationManagerDelegate {
             let kph = max(newLocation.speed * 3.6, 0)
             let wholeSpeed = Int(round(kph))
             if (wholeSpeed < Global.speedFilter) {
-                lblLat.text = String(format: "%.4f", newLocation.coordinate.latitude)
-                lblLong.text = String(format: "%.4f", newLocation.coordinate.longitude)
+                if (wholeSpeed > topSpeed) {
+                    topSpeed = wholeSpeed
+                    lblTopSpeed.text = wholeSpeed.description
+                }
                 lblSpeed.text = wholeSpeed.description
                 let combinedString = wholeSpeed.description + ":" + distanceInMetres.description
                 if (isConnected) {
                     if (self.bleSpeed != nil) {
-                        #if !FAKEGPS
-                            self.checkSpeedAlarm(speed: wholeSpeed)
-                            self.peripheral.writeValue(combinedString.data(using: .utf8)!, for: self.bleSpeed, type: .withResponse)
-                        #endif
+                        self.checkSpeedAlarm(speed: wholeSpeed)
+                        self.peripheral.writeValue(combinedString.data(using: .utf8)!, for: self.bleSpeed, type: .withResponse)
                     }
                 }
             }
