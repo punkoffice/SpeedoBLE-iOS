@@ -29,6 +29,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     private var testTimer: Timer!
     private var testCurrentSpeed = 3
     private var maxSpeed = 0
+    private var totalDistance = 0
     private var lastLocation: CLLocation?
     private var lastTime: Date?
     
@@ -110,8 +111,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if (isConnected) {
             //let speed = Int.random(in: 1...30)
             let speed = testCurrentSpeed
-            let distanceMetres = "25.1797835042561151119"
-            let combinedString = speed.description + ":" + distanceMetres
+            let distanceInMetres = 200
+            totalDistance += distanceInMetres
+            let distanceKs = Double(totalDistance) / 1000.0
+            let strTotalKs = String(format: "%.1f", distanceKs)
+            let combinedString = speed.description + ":" + distanceInMetres.description
             peripheral.writeValue(combinedString.description.data(using: .utf8)!, for: self.bleSpeed, type: .withResponse)
             testCurrentSpeed += 1
             checkSpeedAlarm(speed: speed)
@@ -250,14 +254,16 @@ extension ViewController: CLLocationManagerDelegate {
             lastLocation = newLocation
         } else {
             let distanceInMetres = newLocation.distance(from: lastLocation!)
-            let distanceString = String(format: "%.20f", distanceInMetres)
+            totalDistance += Int(distanceInMetres)
+            let distanceKs = Double(totalDistance) / 1000.0
+            let strTotalKs = String(format: "%.1f", distanceKs)
             let kph = max(newLocation.speed * 3.6, 0)
             let wholeSpeed = Int(round(kph))
             if (wholeSpeed < Global.speedFilter) {
                 lblLat.text = String(format: "%.4f", newLocation.coordinate.latitude)
                 lblLong.text = String(format: "%.4f", newLocation.coordinate.longitude)
                 lblSpeed.text = wholeSpeed.description
-                let combinedString = wholeSpeed.description + ":" + distanceString
+                let combinedString = wholeSpeed.description + ":" + distanceInMetres.description
                 if (isConnected) {
                     if (self.bleSpeed != nil) {
                         #if !FAKEGPS
