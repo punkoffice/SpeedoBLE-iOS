@@ -134,6 +134,21 @@ class Global {
         }
     }
     
+    static func removeLog(index: Int) {
+        if (DBitemsLogs != nil) {
+            let DBMOlog = DBitemsLogs![index] as? NSManagedObject
+            if (DBMOlog != nil) {
+                Global.DBcontext?.delete(DBMOlog!)
+            }
+            do {
+                try Global.DBcontext!.save()
+            } catch {
+                print("Could not remove log \(error)")
+            }
+            DBitemsLogs!.remove(at: index)
+        }
+    }
+    
     static func changeSpeedAlarm(speed: Int, index: Int) {
         let DBMOspeed = DBitemsSpeed![index] as? NSManagedObject
         if (DBMOspeed != nil) {
