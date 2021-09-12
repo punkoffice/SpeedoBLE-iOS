@@ -39,6 +39,8 @@
 		D5DF45D426ED8CA600883A2F /* tabAlarms.png in Resources */ = {isa = PBXBuildFile; fileRef = D5DF45CF26ED8CA500883A2F /* tabAlarms.png */; };
 		D5DF45D526ED8CA600883A2F /* tabList.png in Resources */ = {isa = PBXBuildFile; fileRef = D5DF45D026ED8CA500883A2F /* tabList.png */; };
 		D5DF45D626ED8CA600883A2F /* tabList.png in Resources */ = {isa = PBXBuildFile; fileRef = D5DF45D026ED8CA500883A2F /* tabList.png */; };
+		D5DF45D826EDCEF000883A2F /* LoggingFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DF45D726EDCEF000883A2F /* LoggingFormViewController.swift */; };
+		D5DF45D926EDCEF000883A2F /* LoggingFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DF45D726EDCEF000883A2F /* LoggingFormViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +64,7 @@
 		D5DF45CE26ED8CA500883A2F /* tabSettings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabSettings.png; sourceTree = "<group>"; };
 		D5DF45CF26ED8CA500883A2F /* tabAlarms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabAlarms.png; sourceTree = "<group>"; };
 		D5DF45D026ED8CA500883A2F /* tabList.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabList.png; sourceTree = "<group>"; };
+		D5DF45D726EDCEF000883A2F /* LoggingFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingFormViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +123,7 @@
 				D57414A226D77D8D0015877A /* SpeedAlarmsViewController.swift */,
 				D5DF45B926ED85D400883A2F /* LogsViewController.swift */,
 				D5DF45C226ED89DB00883A2F /* SettingsViewController.swift */,
+				D5DF45D726EDCEF000883A2F /* LoggingFormViewController.swift */,
 			);
 			path = speedo;
 			sourceTree = "<group>";
@@ -234,6 +238,7 @@
 				D566198F26B78F82008BACBF /* LocationManager.swift in Sources */,
 				D566199026B78F82008BACBF /* Database.xcdatamodeld in Sources */,
 				D566199126B78F82008BACBF /* Global.swift in Sources */,
+				D5DF45D926EDCEF000883A2F /* LoggingFormViewController.swift in Sources */,
 				D566199226B78F82008BACBF /* ViewController.swift in Sources */,
 				D566199326B78F82008BACBF /* AppDelegate.swift in Sources */,
 				D566199426B78F82008BACBF /* SceneDelegate.swift in Sources */,
@@ -250,6 +255,7 @@
 				D565B98526B3854900D0F718 /* LocationManager.swift in Sources */,
 				D577EF8426B534BD00A1FDF6 /* Database.xcdatamodeld in Sources */,
 				D577EF8626B5357B00A1FDF6 /* Global.swift in Sources */,
+				D5DF45D826EDCEF000883A2F /* LoggingFormViewController.swift in Sources */,
 				D5BDB0C326B262DC0076374C /* ViewController.swift in Sources */,
 				D5BDB0BF26B262DC0076374C /* AppDelegate.swift in Sources */,
 				D5BDB0C126B262DC0076374C /* SceneDelegate.swift in Sources */,

@@ -127,15 +127,71 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="tabSpeedo.png" selectedImage="tabSpeedo.png" id="fj0-ju-T3S"/>
                     <connections>
+                        <outlet property="btnLogging" destination="pYV-2k-DHV" id="awJ-cF-mTa"/>
                         <outlet property="lblConnected" destination="pSa-QI-ONb" id="YgT-Kf-XLd"/>
                         <outlet property="lblDistance" destination="aIJ-JS-Owk" id="l2L-te-2uY"/>
                         <outlet property="lblSpeed" destination="6uH-td-Hab" id="xEQ-LC-8Sk"/>
                         <outlet property="lblTopSpeed" destination="wbt-mi-fiR" id="Bxj-3e-ONr"/>
+                        <segue destination="Ckw-jE-602" kind="show" identifier="segLoggingForm" id="IZ5-xm-hJv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="370" y="-308"/>
+            <point key="canvasLocation" x="535" y="-1045"/>
+        </scene>
+        <!--Logging Form View Controller-->
+        <scene sceneID="UYc-o4-YG9">
+            <objects>
+                <viewController id="Ckw-jE-602" customClass="LoggingFormViewController" customModule="Speedo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8sQ-RZ-0nD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b3w-x3-H4D">
+                                <rect key="frame" x="237" y="713" width="100" height="60"/>
+                                <color key="backgroundColor" red="1" green="0.43120499000000001" blue="0.41740905820000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="55g-UM-f7E"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="KRO-dR-Lxp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title="CANCEL">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressedCancel:" destination="Ckw-jE-602" eventType="touchUpInside" id="hWu-dO-d2V"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iqz-xC-hbr">
+                                <rect key="frame" x="77" y="713" width="100" height="60"/>
+                                <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="4mX-fI-SkU"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="ydi-5w-4Ir"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title="START">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressedStart:" destination="Ckw-jE-602" eventType="touchUpInside" id="nPW-YO-NNY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Tyl-zP-Gt1"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="iqz-xC-hbr" firstAttribute="centerY" secondItem="b3w-x3-H4D" secondAttribute="centerY" id="91n-3b-Eb2"/>
+                            <constraint firstItem="b3w-x3-H4D" firstAttribute="centerX" secondItem="8sQ-RZ-0nD" secondAttribute="centerX" constant="80" id="H49-2P-MDx"/>
+                            <constraint firstItem="iqz-xC-hbr" firstAttribute="centerX" secondItem="8sQ-RZ-0nD" secondAttribute="centerX" constant="-80" id="pbR-nP-N5T"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="iqz-xC-hbr" secondAttribute="bottom" constant="35" id="tf8-NI-PM0"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="XGu-cy-6ei"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mjT-d2-Dmx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1537.68115942029" y="-1045.3125"/>
         </scene>
         <!--Logs View Controller-->
         <scene sceneID="jEn-Ws-97T">
@@ -164,7 +220,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wOH-MY-RQg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1155" y="-308"/>
+            <point key="canvasLocation" x="535" y="424"/>
         </scene>
         <!--Speed Alarms View Controller-->
         <scene sceneID="iLi-3h-2WO">
@@ -245,7 +301,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6kd-aP-HWH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="370" y="360"/>
+            <point key="canvasLocation" x="535" y="-311"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="ClI-9Y-oLk">
@@ -332,7 +388,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1153.6231884057972" y="359.59821428571428"/>
+            <point key="canvasLocation" x="535" y="1179"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="hdM-qg-0Yc">
@@ -352,7 +408,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s5X-ET-fSg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-377" y="-21"/>
+            <point key="canvasLocation" x="-739" y="-14"/>
         </scene>
     </scenes>
     <resources>
@@ -363,6 +419,9 @@
         <image name="trash" catalog="system" width="121" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var lblSpeed: UILabel!
     @IBOutlet weak var lblTopSpeed: UILabel!
     @IBOutlet weak var lblDistance: UILabel!
+    @IBOutlet weak var btnLogging: UIButton!
     
     private var centralManager: CBCentralManager!
     private var peripheral: CBPeripheral!
@@ -45,10 +46,17 @@ class ViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "segSpeedAlarms") {
-            let svc = segue.destination as? SpeedAlarmsViewController
+        if (segue.identifier == "segLoggingForm") {
+            let svc = segue.destination as? LoggingFormViewController
+            svc?.mainView = self
             svc?.modalPresentationStyle = .fullScreen
         }
+    }
+    
+    func startLogging() {
+        btnLogging.setTitle("STOP LOGGING", for: UIControl.State.normal)
+        btnLogging.backgroundColor = UIColor.systemRed
+        isLogging = true
     }
     
     private func startLocationUpdates() {
@@ -131,11 +139,10 @@ class ViewController: UIViewController {
         if (isLogging) {
             sender.setTitle("START LOGGING", for: UIControl.State.normal)
             sender.backgroundColor = UIColor.systemGreen
+            isLogging = false
         } else {
-            sender.setTitle("STOP LOGGING", for: UIControl.State.normal)
-            sender.backgroundColor = UIColor.systemRed
+            performSegue(withIdentifier: "segLoggingForm", sender: self)
         }
-        isLogging = !isLogging
     }
 }
 
