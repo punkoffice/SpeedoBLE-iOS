@@ -51,9 +51,24 @@ class LogsViewController: UITableViewController {
         let dblDistance = Double(distance)/1000.0
         lblDistance?.text =  String(format: "%.1f", dblDistance)
         lblDuration?.text = duration.description
+        if indexPath.row % 2 == 0 {
+            cell.backgroundColor = UIColor.init(white: 0.9, alpha: 1)
+        } else {
+            cell.backgroundColor = UIColor.white
+        }
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        let headerCell = tableView.dequeueReusableCell(withIdentifier: "cellHeader") as UITableViewCell?
+        headerView.addSubview(headerCell!)
+        return headerView
+    }
 
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
