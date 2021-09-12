@@ -4,7 +4,7 @@
         <attribute name="batteryEnd" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="batteryStart" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="datetime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="distance" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="distance" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="duration" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="topSpeed" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="wheelDrive" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
