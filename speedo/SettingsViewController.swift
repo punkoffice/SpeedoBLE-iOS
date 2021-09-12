@@ -7,10 +7,15 @@
 
 import UIKit
 
-class SettingsViewController: UITableViewController {
+class SettingsViewController: UITableViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var txtWatchyName: UITextField!
+    @IBOutlet weak var txtSpeedFilter: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        txtWatchyName.delegate = self
+        txtSpeedFilter.delegate = self
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -19,16 +24,68 @@ class SettingsViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        txtWatchyName.text = Global.watchyName
+        txtSpeedFilter.text = Global.speedFilter.description
+    }
+    
+    @IBAction func changedWatchyName(_ sender: UITextField) {
+        if (sender.text == nil) {
+            Global.watchyName = ""
+        } else {
+            Global.watchyName = sender.text!
+        }
+        Global.saveSettings(data: Global.watchyName, key: "watchyName")
+    }
+    
+    @IBAction func changedSpeedFilter(_ sender: UITextField) {
+        if (sender.text == nil) {
+            Global.speedFilter = 0
+        } else {
+            let intSpeedFilter = Int(sender.text!)
+            if (intSpeedFilter == nil) {
+                Global.speedFilter = 0
+            } else {
+                Global.speedFilter = intSpeedFilter!
+            }
+        }
+        Global.saveSettings(data: Global.speedFilter, key: "speedFilter")
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
+    @IBAction func tappedView(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 2
     }
 
     /*

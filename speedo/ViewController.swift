@@ -9,15 +9,12 @@ import UIKit
 import CoreBluetooth
 import CoreLocation
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController {
     
     @IBOutlet weak var lblConnected: UILabel!
     @IBOutlet weak var lblSpeed: UILabel!
     @IBOutlet weak var lblTopSpeed: UILabel!
     @IBOutlet weak var lblDistance: UILabel!
-    
-    @IBOutlet weak var txtWatchyName: UITextField!
-    @IBOutlet weak var txtSpeedFilter: UITextField!
     
     private var centralManager: CBCentralManager!
     private var peripheral: CBPeripheral!
@@ -38,12 +35,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         centralManager = CBCentralManager(delegate: self, queue: nil)
-        txtWatchyName.text = Global.watchyName
-        txtSpeedFilter.text = Global.speedFilter.description
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        self.txtWatchyName.delegate = self
-        self.txtSpeedFilter.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -53,34 +44,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         #endif
     }
     
-    @IBAction func tappedView(_ sender: UITapGestureRecognizer) {
-        view.endEditing(true)
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "segSpeedAlarms") {
             let svc = segue.destination as? SpeedAlarmsViewController
             svc?.modalPresentationStyle = .fullScreen
         }
-    }
-    
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= keyboardSize.height
-            }
-        }
-    }
-
-    @objc func keyboardWillHide(notification: NSNotification) {
-        if self.view.frame.origin.y != 0 {
-            self.view.frame.origin.y = 0
-        }
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return false
     }
     
     private func startLocationUpdates() {
@@ -166,29 +134,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
             sender.backgroundColor = UIColor.systemRed
         }
         isLogging = !isLogging
-    }
-    
-    @IBAction func changedWatchyName(_ sender: UITextField) {
-        if (sender.text == nil) {
-            Global.watchyName = ""
-        } else {
-            Global.watchyName = sender.text!
-        }
-        Global.saveSettings(data: Global.watchyName, key: "watchyName")
-    }
-    
-    @IBAction func changedSpeedFilter(_ sender: UITextField) {
-        if (sender.text == nil) {
-            Global.speedFilter = 0
-        } else {
-            let intSpeedFilter = Int(sender.text!)
-            if (intSpeedFilter == nil) {
-                Global.speedFilter = 0
-            } else {
-                Global.speedFilter = intSpeedFilter!
-            }
-        }
-        Global.saveSettings(data: Global.speedFilter, key: "speedFilter")
     }
 }
 
