@@ -35,7 +35,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        centralManager = CBCentralManager(delegate: self, queue: nil)
+        //centralManager = CBCentralManager(delegate: self, queue: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {

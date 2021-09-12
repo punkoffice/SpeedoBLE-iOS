@@ -11,7 +11,8 @@ import UIKit
 class LoggingFormViewController: UIViewController {
 
     var mainView: ViewController?
-    
+    var childView: UIHostingController<LoggingForm>?
+
     @IBOutlet var container: UIView!
     @IBAction func pressedStart(_ sender: UIButton) {
         mainView?.startLogging()
@@ -22,15 +23,25 @@ class LoggingFormViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    func btnStart() {
+        mainView?.startLogging()
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func btnCancel() {
+        dismiss(animated: true, completion: nil)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let childView = UIHostingController(rootView: LoggingForm())
-        addChild(childView)
-        childView.view.frame = container.bounds
-        container.addSubview(childView.view)
-        childView.didMove(toParent: self)    }
+        childView = UIHostingController(rootView: LoggingForm(callbackStart: self.btnStart, callbackCancel: self.btnCancel))
+        addChild(childView!)
+        childView!.view.frame = container.bounds
+        container.addSubview(childView!.view)
+        childView!.didMove(toParent: self)
+    }
     
 
     /*

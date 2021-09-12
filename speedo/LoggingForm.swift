@@ -21,9 +21,12 @@ enum wheelSizeOptions: String, CaseIterable, Identifiable {
 }
 
 struct LoggingForm: View {
+    var callbackStart: () -> Void
+    var callbackCancel: () -> Void
     @State var wheelDrive: wheelDriveOptions = .wd4
     @State var wheelSize: wheelSizeOptions = .mm160
     @State var batteryLevel: String = ""
+    
     var body: some View {
         NavigationView {
             Form {
@@ -37,12 +40,12 @@ struct LoggingForm: View {
                     Text("175mm").tag(wheelSizeOptions.mm175)
                 }
                 TextField("Battery level", text: $batteryLevel)        .keyboardType(.numberPad)
-                buttons().padding(.top, 20).padding(.bottom, 20)
+                buttons(callbackStart: callbackStart, callbackCancel: callbackCancel).padding(.top, 20).padding(.bottom, 20).buttonStyle(BorderlessButtonStyle())
 
             }
             .navigationBarTitle("Board Details")
-        }.onTapGesture {
-            self.endEditing()
+        //}.onTapGesture {
+           //self.endEditing()
         }
     }
     
@@ -52,9 +55,11 @@ struct LoggingForm: View {
 }
 
 struct buttons : View {
+    var callbackStart: () -> Void
+    var callbackCancel: () -> Void
     var body: some View {
         HStack {
-            Button(action: {}) {
+            Button(action: callbackStart) {
                 HStack {
                     Spacer()
                     Text("Start")
@@ -66,7 +71,7 @@ struct buttons : View {
             .padding(.vertical, 10.0)
             .background(Color.init(UIColor.lightGray))
             Spacer(minLength: 20)
-            Button(action: {}) {
+            Button(action: callbackCancel) {
                 HStack {
                     Spacer()
                     Text("Cancel")
@@ -84,8 +89,8 @@ struct buttons : View {
 struct LoggingForm_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            LoggingForm()
-            buttons().previewLayout(.sizeThatFits)
+            LoggingForm(callbackStart: {}, callbackCancel: {})
+            buttons(callbackStart: {}, callbackCancel: {}).previewLayout(.sizeThatFits)
         }
     }
 }
