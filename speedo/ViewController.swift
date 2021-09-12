@@ -81,21 +81,23 @@ class ViewController: UIViewController {
     @objc private func testUpdate() {
         if (isConnected) {
             let speed = Int.random(in: 1...30)
-            //let speed = testCurrentSpeed
-            if (speed > topSpeed) {
-                topSpeed = speed
-                lblTopSpeed.text = topSpeed.description
+            if (speed < Global.speedFilter) {
+                //let speed = testCurrentSpeed
+                if (speed > topSpeed) {
+                    topSpeed = speed
+                    lblTopSpeed.text = topSpeed.description
+                }
+                let distanceInMetres = 200
+                totalDistance += distanceInMetres
+                let distanceKs = Double(totalDistance) / 1000.0
+                let strTotalKs = String(format: "%.1f", distanceKs)
+                let combinedString = speed.description + ":" + distanceInMetres.description
+                lblSpeed.text = speed.description
+                lblDistance.text = strTotalKs
+                peripheral.writeValue(combinedString.description.data(using: .utf8)!, for: self.bleSpeed, type: .withResponse)
+                testCurrentSpeed += 1
+                checkSpeedAlarm(speed: speed)
             }
-            let distanceInMetres = 200
-            totalDistance += distanceInMetres
-            let distanceKs = Double(totalDistance) / 1000.0
-            let strTotalKs = String(format: "%.1f", distanceKs)
-            let combinedString = speed.description + ":" + distanceInMetres.description
-            lblSpeed.text = speed.description
-            lblDistance.text = strTotalKs
-            peripheral.writeValue(combinedString.description.data(using: .utf8)!, for: self.bleSpeed, type: .withResponse)
-            testCurrentSpeed += 1
-            checkSpeedAlarm(speed: speed)
         }
     }
     
