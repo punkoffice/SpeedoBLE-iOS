@@ -29,6 +29,7 @@ class Global {
     static var dateLogStarted: Date?
     static var peripheral: CBPeripheral? = nil
     static var bleTime: CBCharacteristic? = nil
+    static var logCount = 0
     
     static func setup() {
         Global.initDB()
@@ -100,7 +101,6 @@ class Global {
             } catch {
                 print("Could not save speed alarm: \(error)")
             }
-            DBitemsLogs?.append(DBMOcurrentLog!)
             do {
                 try Global.DBcontext!.save()
             } catch {
@@ -129,6 +129,7 @@ class Global {
             } catch {
                 print("Could not save log: \(error)")
             }
+            DBitemsLogs!.append(DBMOcurrentLog!)
         } else {
             print("Missing start date of log entry")
         }
@@ -146,6 +147,7 @@ class Global {
                 print("Could not remove log \(error)")
             }
             DBitemsLogs!.remove(at: index)
+            logCount -= 1
         }
     }
     
@@ -195,6 +197,9 @@ class Global {
             print("Log entries: ",DBitemsLogs!.count)
         } catch {
             print("Could not load log entries from DB")
+        }
+        if (DBitemsLogs != nil) {
+            logCount = DBitemsLogs!.count
         }
     }
     

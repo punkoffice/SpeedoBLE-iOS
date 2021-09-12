@@ -20,8 +20,21 @@ class LogsViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if (Global.DBitemsLogs != nil) {
+            if (Global.logCount < Global.DBitemsLogs!.count) {
+                var arrIndexPaths: [IndexPath] = []
+                for i in Global.logCount...Global.DBitemsLogs!.count-1 {
+                    let indexPath = IndexPath(row: i, section: 0)
+                    arrIndexPaths.append(indexPath)
+                }
+                self.tableView.insertRows(at: arrIndexPaths, with: .automatic)
+                Global.logCount = Global.DBitemsLogs!.count
+            }
+        }
+    }
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
