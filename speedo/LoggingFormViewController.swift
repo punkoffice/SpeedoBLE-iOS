@@ -5,12 +5,14 @@
 //  Created by Marcus Milne on 12/9/21.
 //
 
+import SwiftUI
 import UIKit
 
 class LoggingFormViewController: UIViewController {
 
     var mainView: ViewController?
     
+    @IBOutlet var container: UIView!
     @IBAction func pressedStart(_ sender: UIButton) {
         mainView?.startLogging()
         dismiss(animated: true, completion: nil)
@@ -24,7 +26,11 @@ class LoggingFormViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-    }
+        let childView = UIHostingController(rootView: LoggingForm())
+        addChild(childView)
+        childView.view.frame = container.bounds
+        container.addSubview(childView.view)
+        childView.didMove(toParent: self)    }
     
 
     /*
@@ -36,5 +42,4 @@ class LoggingFormViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }

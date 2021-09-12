@@ -147,21 +147,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b3w-x3-H4D">
-                                <rect key="frame" x="237" y="713" width="100" height="60"/>
-                                <color key="backgroundColor" red="1" green="0.43120499000000001" blue="0.41740905820000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="55g-UM-f7E"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="KRO-dR-Lxp"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <state key="normal" title="CANCEL">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="pressedCancel:" destination="Ckw-jE-602" eventType="touchUpInside" id="hWu-dO-d2V"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iqz-xC-hbr">
                                 <rect key="frame" x="77" y="713" width="100" height="60"/>
                                 <color key="backgroundColor" systemColor="systemGray4Color"/>
@@ -177,6 +162,21 @@
                                     <action selector="pressedStart:" destination="Ckw-jE-602" eventType="touchUpInside" id="nPW-YO-NNY"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b3w-x3-H4D">
+                                <rect key="frame" x="237" y="713" width="100" height="60"/>
+                                <color key="backgroundColor" red="1" green="0.43120499000000001" blue="0.41740905820000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="55g-UM-f7E"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="KRO-dR-Lxp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title="CANCEL">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressedCancel:" destination="Ckw-jE-602" eventType="touchUpInside" id="hWu-dO-d2V"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Tyl-zP-Gt1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -188,6 +188,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="XGu-cy-6ei"/>
+                    <connections>
+                        <outlet property="container" destination="8sQ-RZ-0nD" id="CnT-I0-wHs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mjT-d2-Dmx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
