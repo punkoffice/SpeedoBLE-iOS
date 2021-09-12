@@ -250,10 +250,50 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="" image="tabList.png" selectedImage="tabList.png" id="eX0-RW-yEy"/>
+                    <connections>
+                        <segue destination="vKy-Kn-tUV" kind="show" identifier="segLogEntry" id="4tP-vA-E10"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wOH-MY-RQg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="534.78260869565224" y="423.88392857142856"/>
+            <point key="canvasLocation" x="535" y="416"/>
+        </scene>
+        <!--Log Entry View Controller-->
+        <scene sceneID="cih-ID-P5I">
+            <objects>
+                <viewController id="vKy-Kn-tUV" customClass="LogEntryViewController" customModule="Speedo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VLr-Vv-isX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQw-VT-xlt">
+                                <rect key="frame" x="138" y="721" width="138" height="71"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="71" id="JNo-Rx-0Ta"/>
+                                    <constraint firstAttribute="width" constant="138" id="maz-C1-Enj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                <state key="normal" title="DONE">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressedDone:" destination="vKy-Kn-tUV" eventType="touchUpInside" id="fy2-ZQ-2n4"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Kja-JX-Mlo"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="CQw-VT-xlt" firstAttribute="centerX" secondItem="VLr-Vv-isX" secondAttribute="centerX" id="3gj-Ed-ijs"/>
+                            <constraint firstItem="Kja-JX-Mlo" firstAttribute="bottom" secondItem="CQw-VT-xlt" secondAttribute="bottom" constant="16" id="kvG-k9-oQh"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="bQx-fM-bbf"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rK0-k9-Pbm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1340.5797101449277" y="415.84821428571428"/>
         </scene>
         <!--Speed Alarms View Controller-->
         <scene sceneID="iLi-3h-2WO">

@@ -27,6 +27,8 @@
 		D5BDB0C626B262DC0076374C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5BDB0C426B262DC0076374C /* Main.storyboard */; };
 		D5BDB0C826B262DD0076374C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5BDB0C726B262DD0076374C /* Assets.xcassets */; };
 		D5BDB0CB26B262DD0076374C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5BDB0C926B262DD0076374C /* LaunchScreen.storyboard */; };
+		D5DE4F0626EE685F00BBC881 /* LogEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DE4F0526EE685F00BBC881 /* LogEntryViewController.swift */; };
+		D5DE4F0726EE685F00BBC881 /* LogEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DE4F0526EE685F00BBC881 /* LogEntryViewController.swift */; };
 		D5DF45BA26ED85D400883A2F /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DF45B926ED85D400883A2F /* LogsViewController.swift */; };
 		D5DF45BB26ED85D400883A2F /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DF45B926ED85D400883A2F /* LogsViewController.swift */; };
 		D5DF45C326ED89DB00883A2F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DF45C226ED89DB00883A2F /* SettingsViewController.swift */; };
@@ -60,6 +62,7 @@
 		D5BDB0C726B262DD0076374C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D5BDB0CA26B262DD0076374C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D5BDB0CC26B262DD0076374C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5DE4F0526EE685F00BBC881 /* LogEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEntryViewController.swift; sourceTree = "<group>"; };
 		D5DF45B926ED85D400883A2F /* LogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsViewController.swift; sourceTree = "<group>"; };
 		D5DF45C226ED89DB00883A2F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D5DF45CB26ED8C1A00883A2F /* tabSpeedo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabSpeedo.png; sourceTree = "<group>"; };
@@ -128,6 +131,7 @@
 				D5DF45C226ED89DB00883A2F /* SettingsViewController.swift */,
 				D5DF45D726EDCEF000883A2F /* LoggingFormViewController.swift */,
 				D5DF45DA26EDE8CD00883A2F /* LoggingForm.swift */,
+				D5DE4F0526EE685F00BBC881 /* LogEntryViewController.swift */,
 			);
 			path = speedo;
 			sourceTree = "<group>";
@@ -248,6 +252,7 @@
 				D566199326B78F82008BACBF /* AppDelegate.swift in Sources */,
 				D566199426B78F82008BACBF /* SceneDelegate.swift in Sources */,
 				D5DF45BB26ED85D400883A2F /* LogsViewController.swift in Sources */,
+				D5DE4F0726EE685F00BBC881 /* LogEntryViewController.swift in Sources */,
 				D5DF45C426ED89DB00883A2F /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,6 +271,7 @@
 				D5BDB0BF26B262DC0076374C /* AppDelegate.swift in Sources */,
 				D5BDB0C126B262DC0076374C /* SceneDelegate.swift in Sources */,
 				D5DF45BA26ED85D400883A2F /* LogsViewController.swift in Sources */,
+				D5DE4F0626EE685F00BBC881 /* LogEntryViewController.swift in Sources */,
 				D5DF45C326ED89DB00883A2F /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

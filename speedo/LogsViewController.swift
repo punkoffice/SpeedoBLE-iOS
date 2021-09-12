@@ -12,7 +12,6 @@ class LogsViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -83,6 +82,10 @@ class LogsViewController: UITableViewController {
         return 50
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "segLogEntry", sender: indexPath)
+    }
+    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
@@ -98,14 +101,15 @@ class LogsViewController: UITableViewController {
         }
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if (segue.identifier == "segLogEntry") {
+            let svc = segue.destination as? LogEntryViewController
+            let selectedIndex = (sender as! IndexPath).row
+            svc?.DBMOlog = Global.DBitemsLogs![selectedIndex] as? NSManagedObject
+            svc?.modalPresentationStyle = .fullScreen
+        }
     }
-    */
-
 }
