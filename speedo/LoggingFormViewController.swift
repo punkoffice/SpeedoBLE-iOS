@@ -12,7 +12,10 @@ class LoggingFormViewController: UIViewController {
 
     var mainView: ViewController?
     var childView: UIHostingController<LoggingForm>?
-
+    var wheelDrive: String?
+    var wheelSize: String?
+    var batteryLevel: Int?
+    
     @IBOutlet var container: UIView!
     @IBAction func pressedStart(_ sender: UIButton) {
         mainView?.startLogging()
@@ -32,11 +35,30 @@ class LoggingFormViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 
+    func setWheelDrive(text: String) {
+        wheelDrive = text
+    }
+    
+    func setWheelSize(text: String) {
+        wheelSize = text
+    }
+    func setBatteryLevel(text: String) {
+        if (text != "") {
+            batteryLevel = Int(text)!
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        childView = UIHostingController(rootView: LoggingForm(callbackStart: self.btnStart, callbackCancel: self.btnCancel))
+        childView = UIHostingController(rootView: LoggingForm(
+            callbackStart: self.btnStart,
+            callbackCancel: self.btnCancel,
+            setWheelDrive: setWheelDrive(text:),
+            setWheelSize: setWheelSize(text:),
+            setBatteryLevel: setBatteryLevel(text:))
+        )
         addChild(childView!)
         childView!.view.frame = container.bounds
         container.addSubview(childView!.view)

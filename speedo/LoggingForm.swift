@@ -23,6 +23,9 @@ enum wheelSizeOptions: String, CaseIterable, Identifiable {
 struct LoggingForm: View {
     var callbackStart: () -> Void
     var callbackCancel: () -> Void
+    var setWheelDrive: (String) -> Void
+    var setWheelSize: (String) -> Void
+    var setBatteryLevel: (String) -> Void
     @State var wheelDrive: wheelDriveOptions = .wd4
     @State var wheelSize: wheelSizeOptions = .mm160
     @State var batteryLevel: String = ""
@@ -33,13 +36,19 @@ struct LoggingForm: View {
                 Picker("Wheel drive", selection: $wheelDrive) {
                     Text("2WD").tag(wheelDriveOptions.wd2)
                     Text("4WD").tag(wheelDriveOptions.wd4)
+                }.onChange(of: wheelDrive) { _ in
+                    setWheelDrive(wheelDrive.rawValue)
                 }
                 Picker("Wheel size", selection: $wheelSize) {
                     Text("120mm").tag(wheelSizeOptions.mm120)
                     Text("160mm").tag(wheelSizeOptions.mm160)
                     Text("175mm").tag(wheelSizeOptions.mm175)
+                }.onChange(of: wheelSize) { _ in
+                    setWheelSize(wheelSize.rawValue)
                 }
-                TextField("Battery level", text: $batteryLevel)        .keyboardType(.numberPad)
+                TextField("Battery level", text: $batteryLevel)        .keyboardType(.numberPad).onChange(of: batteryLevel) { _ in
+                    setBatteryLevel(batteryLevel)
+                }
                 buttons(callbackStart: callbackStart, callbackCancel: callbackCancel).padding(.top, 20).padding(.bottom, 20).buttonStyle(BorderlessButtonStyle())
 
             }
@@ -82,15 +91,6 @@ struct buttons : View {
             }
             .padding(.vertical, 10.0)
             .background(Color.red)
-        }
-    }
-}
-
-struct LoggingForm_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            LoggingForm(callbackStart: {}, callbackCancel: {})
-            buttons(callbackStart: {}, callbackCancel: {}).previewLayout(.sizeThatFits)
         }
     }
 }
