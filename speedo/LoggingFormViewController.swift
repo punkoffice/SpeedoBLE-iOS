@@ -12,21 +12,14 @@ class LoggingFormViewController: UIViewController {
 
     var mainView: ViewController?
     var childView: UIHostingController<LoggingForm>?
-    var wheelDrive: String?
-    var wheelSize: String?
-    var batteryLevel: Int?
+    var wheelDrive: Int = 4
+    var wheelSize: Int = 160
+    var batteryLevel = 0
     
     @IBOutlet var container: UIView!
-    @IBAction func pressedStart(_ sender: UIButton) {
-        mainView?.startLogging()
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func pressedCancel(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
-    }
     
     func btnStart() {
+        Global.insertLog(wheelDrive: wheelDrive, wheelSize: wheelSize, battery: batteryLevel)
         mainView?.startLogging()
         dismiss(animated: true, completion: nil)
     }
@@ -36,11 +29,21 @@ class LoggingFormViewController: UIViewController {
     }
 
     func setWheelDrive(text: String) {
-        wheelDrive = text
+        if (text == "wd2") {
+            wheelDrive = 2
+        } else {
+            wheelDrive = 4
+        }
     }
     
     func setWheelSize(text: String) {
-        wheelSize = text
+        if (text == "mm175") {
+            wheelSize = 175
+        } else if (text == "mm160") {
+            wheelSize = 160
+        } else {
+            wheelSize = 120
+        }
     }
     func setBatteryLevel(text: String) {
         if (text != "") {

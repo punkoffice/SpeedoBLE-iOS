@@ -35,7 +35,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        //centralManager = CBCentralManager(delegate: self, queue: nil)
+        centralManager = CBCentralManager(delegate: self, queue: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -56,6 +56,10 @@ class ViewController: UIViewController {
     func startLogging() {
         btnLogging.setTitle("STOP LOGGING", for: UIControl.State.normal)
         btnLogging.backgroundColor = UIColor.systemRed
+        totalDistance = 0
+        topSpeed = 0
+        lblTopSpeed.text = topSpeed.description
+        lblDistance.text = totalDistance.description
         isLogging = true
     }
     
@@ -140,6 +144,9 @@ class ViewController: UIViewController {
             sender.setTitle("START LOGGING", for: UIControl.State.normal)
             sender.backgroundColor = UIColor.systemGreen
             isLogging = false
+            Global.finishLog(topSpeed: topSpeed, distance: totalDistance)
+            topSpeed = 0
+            totalDistance = 0
         } else {
             performSegue(withIdentifier: "segLoggingForm", sender: self)
         }
