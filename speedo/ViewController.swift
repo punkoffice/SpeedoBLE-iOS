@@ -30,6 +30,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     private var testCurrentSpeed = 3
     private var topSpeed = 0
     private var totalDistance = 0
+    private var isLogging = false
     private var lastLocation: CLLocation?
     private var lastTime: Date?
     
@@ -154,6 +155,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func updateSettings() {
         print("Updaing settings...")
+    }
+    
+    @IBAction func btnLogging(_ sender: UIButton) {
+        if (isLogging) {
+            sender.setTitle("START LOGGING", for: UIControl.State.normal)
+            sender.backgroundColor = UIColor.systemGreen
+        } else {
+            sender.setTitle("STOP LOGGING", for: UIControl.State.normal)
+            sender.backgroundColor = UIColor.systemRed
+        }
+        isLogging = !isLogging
     }
     
     @IBAction func changedWatchyName(_ sender: UITextField) {

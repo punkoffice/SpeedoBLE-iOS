@@ -57,10 +57,6 @@ class SpeedAlarmsViewController: UITableViewController {
         Global.rebuildSpeedAlarmList()
     }
     
-    @objc func closeViewController() {
-        dismiss(animated: true, completion: nil)
-    }
-    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -106,10 +102,8 @@ class SpeedAlarmsViewController: UITableViewController {
         } else if (indexPath.row == tableView.numberOfRows(inSection: 0)-1) {
             cell = tableView.dequeueReusableCell(withIdentifier: "cellLast", for: indexPath)
             let btnAdd = cell.viewWithTag(5) as! UIButton
-            let btnDone = cell.viewWithTag(6) as! UIButton
-            let btnReset = cell.viewWithTag(7) as! UIButton
+            let btnReset = cell.viewWithTag(6) as! UIButton
             btnAdd.addTarget(self, action: #selector(addSpeedRow), for: .touchUpInside)
-            btnDone.addTarget(self, action: #selector(closeViewController), for: .touchUpInside)
             btnReset.addTarget(self, action: #selector(resetAlarms), for: .touchUpInside)
         } else {
             cell = tableView.dequeueReusableCell(withIdentifier: "cellSpeed", for: indexPath)

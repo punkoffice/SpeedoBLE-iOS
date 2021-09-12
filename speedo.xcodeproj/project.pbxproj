@@ -17,8 +17,6 @@
 		D566199826B78F82008BACBF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5BDB0C926B262DD0076374C /* LaunchScreen.storyboard */; };
 		D566199926B78F82008BACBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5BDB0C726B262DD0076374C /* Assets.xcassets */; };
 		D566199B26B78F82008BACBF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5BDB0C426B262DC0076374C /* Main.storyboard */; };
-		D57414A026D77B1A0015877A /* alarm.png in Resources */ = {isa = PBXBuildFile; fileRef = D574149F26D77B1A0015877A /* alarm.png */; };
-		D57414A126D77B1A0015877A /* alarm.png in Resources */ = {isa = PBXBuildFile; fileRef = D574149F26D77B1A0015877A /* alarm.png */; };
 		D57414A326D77D8D0015877A /* SpeedAlarmsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57414A226D77D8D0015877A /* SpeedAlarmsViewController.swift */; };
 		D57414A426D77D8D0015877A /* SpeedAlarmsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57414A226D77D8D0015877A /* SpeedAlarmsViewController.swift */; };
 		D577EF8426B534BD00A1FDF6 /* Database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D577EF8226B534BD00A1FDF6 /* Database.xcdatamodeld */; };
@@ -29,13 +27,24 @@
 		D5BDB0C626B262DC0076374C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5BDB0C426B262DC0076374C /* Main.storyboard */; };
 		D5BDB0C826B262DD0076374C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5BDB0C726B262DD0076374C /* Assets.xcassets */; };
 		D5BDB0CB26B262DD0076374C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5BDB0C926B262DD0076374C /* LaunchScreen.storyboard */; };
+		D5DF45BA26ED85D400883A2F /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DF45B926ED85D400883A2F /* LogsViewController.swift */; };
+		D5DF45BB26ED85D400883A2F /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DF45B926ED85D400883A2F /* LogsViewController.swift */; };
+		D5DF45C326ED89DB00883A2F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DF45C226ED89DB00883A2F /* SettingsViewController.swift */; };
+		D5DF45C426ED89DB00883A2F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DF45C226ED89DB00883A2F /* SettingsViewController.swift */; };
+		D5DF45CC26ED8C1A00883A2F /* tabSpeedo.png in Resources */ = {isa = PBXBuildFile; fileRef = D5DF45CB26ED8C1A00883A2F /* tabSpeedo.png */; };
+		D5DF45CD26ED8C1A00883A2F /* tabSpeedo.png in Resources */ = {isa = PBXBuildFile; fileRef = D5DF45CB26ED8C1A00883A2F /* tabSpeedo.png */; };
+		D5DF45D126ED8CA600883A2F /* tabSettings.png in Resources */ = {isa = PBXBuildFile; fileRef = D5DF45CE26ED8CA500883A2F /* tabSettings.png */; };
+		D5DF45D226ED8CA600883A2F /* tabSettings.png in Resources */ = {isa = PBXBuildFile; fileRef = D5DF45CE26ED8CA500883A2F /* tabSettings.png */; };
+		D5DF45D326ED8CA600883A2F /* tabAlarms.png in Resources */ = {isa = PBXBuildFile; fileRef = D5DF45CF26ED8CA500883A2F /* tabAlarms.png */; };
+		D5DF45D426ED8CA600883A2F /* tabAlarms.png in Resources */ = {isa = PBXBuildFile; fileRef = D5DF45CF26ED8CA500883A2F /* tabAlarms.png */; };
+		D5DF45D526ED8CA600883A2F /* tabList.png in Resources */ = {isa = PBXBuildFile; fileRef = D5DF45D026ED8CA500883A2F /* tabList.png */; };
+		D5DF45D626ED8CA600883A2F /* tabList.png in Resources */ = {isa = PBXBuildFile; fileRef = D5DF45D026ED8CA500883A2F /* tabList.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D565B98426B3854900D0F718 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		D566199F26B78F82008BACBF /* speedo test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "speedo test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D56619A026B78F83008BACBF /* speedo copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "speedo copy-Info.plist"; path = "/Users/marcusmilne/Documents/Clients/Watchy/speedo/speedo copy-Info.plist"; sourceTree = "<absolute>"; };
-		D574149F26D77B1A0015877A /* alarm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alarm.png; sourceTree = "<group>"; };
 		D57414A226D77D8D0015877A /* SpeedAlarmsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedAlarmsViewController.swift; sourceTree = "<group>"; };
 		D577EF8326B534BD00A1FDF6 /* Database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Database.xcdatamodel; sourceTree = "<group>"; };
 		D577EF8526B5357B00A1FDF6 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
@@ -47,6 +56,12 @@
 		D5BDB0C726B262DD0076374C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D5BDB0CA26B262DD0076374C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D5BDB0CC26B262DD0076374C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5DF45B926ED85D400883A2F /* LogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsViewController.swift; sourceTree = "<group>"; };
+		D5DF45C226ED89DB00883A2F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		D5DF45CB26ED8C1A00883A2F /* tabSpeedo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabSpeedo.png; sourceTree = "<group>"; };
+		D5DF45CE26ED8CA500883A2F /* tabSettings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabSettings.png; sourceTree = "<group>"; };
+		D5DF45CF26ED8CA500883A2F /* tabAlarms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabAlarms.png; sourceTree = "<group>"; };
+		D5DF45D026ED8CA500883A2F /* tabList.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabList.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +103,10 @@
 		D5BDB0BD26B262DC0076374C /* speedo */ = {
 			isa = PBXGroup;
 			children = (
-				D574149F26D77B1A0015877A /* alarm.png */,
+				D5DF45CB26ED8C1A00883A2F /* tabSpeedo.png */,
+				D5DF45CF26ED8CA500883A2F /* tabAlarms.png */,
+				D5DF45D026ED8CA500883A2F /* tabList.png */,
+				D5DF45CE26ED8CA500883A2F /* tabSettings.png */,
 				D5BDB0BE26B262DC0076374C /* AppDelegate.swift */,
 				D5BDB0C026B262DC0076374C /* SceneDelegate.swift */,
 				D5BDB0C226B262DC0076374C /* ViewController.swift */,
@@ -100,6 +118,8 @@
 				D577EF8226B534BD00A1FDF6 /* Database.xcdatamodeld */,
 				D577EF8526B5357B00A1FDF6 /* Global.swift */,
 				D57414A226D77D8D0015877A /* SpeedAlarmsViewController.swift */,
+				D5DF45B926ED85D400883A2F /* LogsViewController.swift */,
+				D5DF45C226ED89DB00883A2F /* SettingsViewController.swift */,
 			);
 			path = speedo;
 			sourceTree = "<group>";
@@ -180,9 +200,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D566199826B78F82008BACBF /* LaunchScreen.storyboard in Resources */,
-				D57414A126D77B1A0015877A /* alarm.png in Resources */,
+				D5DF45D426ED8CA600883A2F /* tabAlarms.png in Resources */,
 				D566199926B78F82008BACBF /* Assets.xcassets in Resources */,
+				D5DF45D226ED8CA600883A2F /* tabSettings.png in Resources */,
 				D566199B26B78F82008BACBF /* Main.storyboard in Resources */,
+				D5DF45D626ED8CA600883A2F /* tabList.png in Resources */,
+				D5DF45CD26ED8C1A00883A2F /* tabSpeedo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,9 +214,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5BDB0CB26B262DD0076374C /* LaunchScreen.storyboard in Resources */,
-				D57414A026D77B1A0015877A /* alarm.png in Resources */,
+				D5DF45D326ED8CA600883A2F /* tabAlarms.png in Resources */,
 				D5BDB0C826B262DD0076374C /* Assets.xcassets in Resources */,
+				D5DF45D126ED8CA600883A2F /* tabSettings.png in Resources */,
 				D5BDB0C626B262DC0076374C /* Main.storyboard in Resources */,
+				D5DF45D526ED8CA600883A2F /* tabList.png in Resources */,
+				D5DF45CC26ED8C1A00883A2F /* tabSpeedo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +237,8 @@
 				D566199226B78F82008BACBF /* ViewController.swift in Sources */,
 				D566199326B78F82008BACBF /* AppDelegate.swift in Sources */,
 				D566199426B78F82008BACBF /* SceneDelegate.swift in Sources */,
+				D5DF45BB26ED85D400883A2F /* LogsViewController.swift in Sources */,
+				D5DF45C426ED89DB00883A2F /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,6 +253,8 @@
 				D5BDB0C326B262DC0076374C /* ViewController.swift in Sources */,
 				D5BDB0BF26B262DC0076374C /* AppDelegate.swift in Sources */,
 				D5BDB0C126B262DC0076374C /* SceneDelegate.swift in Sources */,
+				D5DF45BA26ED85D400883A2F /* LogsViewController.swift in Sources */,
+				D5DF45C326ED89DB00883A2F /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
