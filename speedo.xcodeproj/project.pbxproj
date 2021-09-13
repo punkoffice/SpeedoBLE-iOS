@@ -21,6 +21,8 @@
 		D57414A426D77D8D0015877A /* SpeedAlarmsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57414A226D77D8D0015877A /* SpeedAlarmsViewController.swift */; };
 		D577EF8426B534BD00A1FDF6 /* Database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D577EF8226B534BD00A1FDF6 /* Database.xcdatamodeld */; };
 		D577EF8626B5357B00A1FDF6 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = D577EF8526B5357B00A1FDF6 /* Global.swift */; };
+		D58694FE26EED9340094ACAD /* LogEntryForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58694FD26EED9340094ACAD /* LogEntryForm.swift */; };
+		D58694FF26EED9340094ACAD /* LogEntryForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58694FD26EED9340094ACAD /* LogEntryForm.swift */; };
 		D5BDB0BF26B262DC0076374C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BDB0BE26B262DC0076374C /* AppDelegate.swift */; };
 		D5BDB0C126B262DC0076374C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BDB0C026B262DC0076374C /* SceneDelegate.swift */; };
 		D5BDB0C326B262DC0076374C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BDB0C226B262DC0076374C /* ViewController.swift */; };
@@ -54,6 +56,7 @@
 		D57414A226D77D8D0015877A /* SpeedAlarmsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedAlarmsViewController.swift; sourceTree = "<group>"; };
 		D577EF8326B534BD00A1FDF6 /* Database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Database.xcdatamodel; sourceTree = "<group>"; };
 		D577EF8526B5357B00A1FDF6 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		D58694FD26EED9340094ACAD /* LogEntryForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEntryForm.swift; sourceTree = "<group>"; };
 		D5BDB0BB26B262DC0076374C /* Speedo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Speedo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5BDB0BE26B262DC0076374C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5BDB0C026B262DC0076374C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +128,7 @@
 				D5BDB0CC26B262DD0076374C /* Info.plist */,
 				D565B98426B3854900D0F718 /* LocationManager.swift */,
 				D577EF8226B534BD00A1FDF6 /* Database.xcdatamodeld */,
+				D58694FD26EED9340094ACAD /* LogEntryForm.swift */,
 				D577EF8526B5357B00A1FDF6 /* Global.swift */,
 				D57414A226D77D8D0015877A /* SpeedAlarmsViewController.swift */,
 				D5DF45B926ED85D400883A2F /* LogsViewController.swift */,
@@ -250,6 +254,7 @@
 				D5DF45D926EDCEF000883A2F /* LoggingFormViewController.swift in Sources */,
 				D566199226B78F82008BACBF /* ViewController.swift in Sources */,
 				D566199326B78F82008BACBF /* AppDelegate.swift in Sources */,
+				D58694FF26EED9340094ACAD /* LogEntryForm.swift in Sources */,
 				D566199426B78F82008BACBF /* SceneDelegate.swift in Sources */,
 				D5DF45BB26ED85D400883A2F /* LogsViewController.swift in Sources */,
 				D5DE4F0726EE685F00BBC881 /* LogEntryViewController.swift in Sources */,
@@ -269,6 +274,7 @@
 				D5DF45D826EDCEF000883A2F /* LoggingFormViewController.swift in Sources */,
 				D5BDB0C326B262DC0076374C /* ViewController.swift in Sources */,
 				D5BDB0BF26B262DC0076374C /* AppDelegate.swift in Sources */,
+				D58694FE26EED9340094ACAD /* LogEntryForm.swift in Sources */,
 				D5BDB0C126B262DC0076374C /* SceneDelegate.swift in Sources */,
 				D5DF45BA26ED85D400883A2F /* LogsViewController.swift in Sources */,
 				D5DE4F0626EE685F00BBC881 /* LogEntryViewController.swift in Sources */,

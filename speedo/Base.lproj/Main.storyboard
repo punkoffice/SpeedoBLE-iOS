@@ -290,6 +290,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bQx-fM-bbf"/>
+                    <connections>
+                        <outlet property="container" destination="VLr-Vv-isX" id="TDB-Gn-oVH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rK0-k9-Pbm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
