@@ -19,7 +19,6 @@ class LogEntryViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        print(DBMOlog)
         let datetime = DBMOlog?.value(forKey: "datetime") as? Date
         let strDateTime = getDateTimeString(datetime: datetime!)
         let intWheelDrive = DBMOlog?.value(forKey: "wheelDrive") as? Int

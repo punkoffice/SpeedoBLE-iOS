@@ -70,14 +70,14 @@ struct LogEntryForm: View {
                     Spacer()
                     TextField("", text: $batteryStart).onAppear() {
                         batteryStart = pBatteryStart.description
-                    }.keyboardType(.numberPad).foregroundColor(Color.gray).multilineTextAlignment(.trailing)
+                    }.keyboardType(.numberPad).foregroundColor(Color.gray).frame(minWidth: 60, maxWidth: 60, alignment: .leading)
                 }
                 HStack {
                     Text("Battery end")
                     Spacer()
                     TextField("", text: $batteryEnd).onAppear() {
                         batteryEnd = pBatteryEnd.description
-                    }.keyboardType(.numberPad).foregroundColor(Color.gray).multilineTextAlignment(.trailing)
+                    }.keyboardType(.numberPad).foregroundColor(Color.gray).frame(minWidth: 60, maxWidth: 60, alignment: .leading)
                 }
                 HStack {
                     Text("Distance")
