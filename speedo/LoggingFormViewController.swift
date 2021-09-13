@@ -38,6 +38,7 @@ class LoggingFormViewController: UIViewController, UIGestureRecognizerDelegate {
         }
         return false
     }
+
     func setWheelDrive(text: String) {
         if (text == "wd2") {
             wheelDrive = 2
