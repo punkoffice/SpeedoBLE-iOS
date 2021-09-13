@@ -14,7 +14,7 @@ class LoggingFormViewController: UIViewController, UIGestureRecognizerDelegate {
     var childView: UIHostingController<LoggingForm>?
     var wheelDrive: Int = 4
     var wheelSize: Int = 160
-    var batteryLevel = 0
+    var batteryLevel = -1
     
     @IBOutlet var container: UIView!
     
@@ -57,11 +57,13 @@ class LoggingFormViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     func setBatteryLevel(text: String) {
+        print("received battery level: ",text)
         if (text != "") {
             batteryLevel = Int(text)!
         } else {
             batteryLevel = -1
         }
+        print("int battery level: ",batteryLevel.description)
     }
 
     override func viewDidLoad() {

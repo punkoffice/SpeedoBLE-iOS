@@ -95,7 +95,9 @@ class Global {
             DBMOcurrentLog!.setValue(wheelDrive, forKey: "wheelDrive")
             DBMOcurrentLog!.setValue(wheelSize, forKey: "wheelSize")
             DBMOcurrentLog!.setValue(battery, forKey: "batteryStart")
+            DBMOcurrentLog!.setValue(-1, forKey: "batteryEnd")
             DBMOcurrentLog!.setValue(0, forKey: "distance")
+            
             do {
                 try Global.DBcontext!.save()
             } catch {
@@ -115,12 +117,9 @@ class Global {
     
     static func finishLog(topSpeed: Int, distance: Int) {
         if (dateLogStarted != nil) {
-            print("date object: ",dateLogStarted!)
-
             let date = Date()
             let seconds = date.timeIntervalSince(dateLogStarted!)
             let minutes = Int(seconds/60)
-            DBMOcurrentLog!.setValue(0, forKey: "batteryEnd")
             DBMOcurrentLog!.setValue(minutes, forKey: "duration")
             DBMOcurrentLog!.setValue(topSpeed, forKey: "topSpeed")
             DBMOcurrentLog!.setValue(distance, forKey: "distance")
