@@ -21,11 +21,15 @@ class LogsViewController: UITableViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        // If there are new log entries, insert them into table
         if (Global.DBitemsLogs != nil) {
             if (Global.logCount < Global.DBitemsLogs!.count) {
                 var arrIndexPaths: [IndexPath] = []
-                for i in Global.logCount...Global.DBitemsLogs!.count-1 {
-                    let indexPath = IndexPath(row: i, section: 0)
+                var idx = Global.DBitemsLogs!.count - Global.logCount - 1
+                for _ in Global.logCount...Global.DBitemsLogs!.count-1 {
+                    let indexPath = IndexPath(row: idx, section: 0)
+                    idx = idx - 1
                     arrIndexPaths.append(indexPath)
                 }
                 self.tableView.insertRows(at: arrIndexPaths, with: .automatic)
@@ -45,7 +49,8 @@ class LogsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let DBMOlog = Global.DBitemsLogs![indexPath.row] as? NSManagedObject
+        let totalLogEntries = Global.DBitemsLogs!.count
+        let DBMOlog = Global.DBitemsLogs![totalLogEntries - indexPath.row - 1] as? NSManagedObject
         let datetime = DBMOlog!.value(forKey: "datetime") as! Date
         let topSpeed = DBMOlog!.value(forKey: "topSpeed") as! Int
         let distance = DBMOlog!.value(forKey: "distance") as! Int
@@ -63,10 +68,18 @@ class LogsViewController: UITableViewController {
         let dblDistance = Double(distance)/1000.0
         lblDistance?.text =  String(format: "%.1f", dblDistance)
         lblDuration?.text = duration.description
-        if indexPath.row % 2 == 0 {
-            cell.backgroundColor = UIColor.init(white: 0.9, alpha: 1)
+        if totalLogEntries % 2 == 0 {
+            if indexPath.row % 2 == 0 {
+                cell.backgroundColor = UIColor.white
+            } else {
+                cell.backgroundColor = UIColor.init(white: 0.9, alpha: 1)
+            }
         } else {
-            cell.backgroundColor = UIColor.white
+            if indexPath.row % 2 == 0 {
+                cell.backgroundColor = UIColor.init(white: 0.9, alpha: 1)
+            } else {
+                cell.backgroundColor = UIColor.white
+            }
         }
         return cell
     }
@@ -96,7 +109,8 @@ class LogsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            Global.removeLog(index: indexPath.row)
+            let totalLogEntries = Global.DBitemsLogs!.count
+            Global.removeLog(index: (totalLogEntries - indexPath.row - 1))
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -108,7 +122,8 @@ class LogsViewController: UITableViewController {
         if (segue.identifier == "segLogEntry") {
             let svc = segue.destination as? LogEntryViewController
             let selectedIndex = (sender as! IndexPath).row
-            svc?.DBMOlog = Global.DBitemsLogs![selectedIndex] as? NSManagedObject
+            let totalLogEntries = Global.DBitemsLogs!.count
+            svc?.DBMOlog = Global.DBitemsLogs![totalLogEntries - selectedIndex - 1] as? NSManagedObject
             svc?.modalPresentationStyle = .fullScreen
         }
     }

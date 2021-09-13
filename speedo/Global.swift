@@ -82,7 +82,6 @@ class Global {
     }
     
     static func insertLog(wheelDrive: Int, wheelSize: Int, battery: Int) {
-        print("Inserting log")
         DBMOcurrentLog = NSManagedObject(entity: Global.entLogs!, insertInto: Global.DBcontext)
         if (DBMOcurrentLog != nil) {
             let dateFormatter = DateFormatter()
@@ -108,8 +107,6 @@ class Global {
             } catch {
                 print("Could not insert log entry: \(error)")
             }
-            print("date object: ",dateLogStarted!)
-            //print("date started: "+dateString)
         } else {
             print("Could not create log managed object")
         }
