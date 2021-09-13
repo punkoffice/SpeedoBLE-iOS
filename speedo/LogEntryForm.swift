@@ -25,7 +25,7 @@ struct LogEntryForm: View {
     @State var wheelSize: wheelSizeOptions = .mm160
     @State var batteryStart: String = ""
     @State var batteryEnd: String = ""
-    @State var potentialDistance: Double = 0.0
+    @State var potentialDistance: String = ""
     var body: some View {
         NavigationView {
             Form {
@@ -81,7 +81,12 @@ struct LogEntryForm: View {
                             batteryStart = pBatteryStart.description
                         }
                     }.keyboardType(.numberPad).foregroundColor(Color.gray).frame(minWidth: 60, maxWidth: 60, alignment: .leading).onChange(of: batteryStart) { _ in
-                        self.potentialDistance = setBatteryStart(batteryStart)
+                        let dblPotentialDistance = setBatteryStart(batteryStart)
+                        if (dblPotentialDistance < 0) {
+                            self.potentialDistance = ""
+                        } else {
+                            self.potentialDistance = String(format: "%.1f",Double(dblPotentialDistance)/1000.0)+" Ks"
+                        }
                     }
                 }
                 HStack {
@@ -94,7 +99,12 @@ struct LogEntryForm: View {
                             batteryEnd = pBatteryEnd.description
                         }
                     }.keyboardType(.numberPad).foregroundColor(Color.gray).frame(minWidth: 60, maxWidth: 60, alignment: .leading).onChange(of: batteryEnd) { _ in
-                        self.potentialDistance = setBatteryEnd(batteryEnd)
+                        let dblPotentialDistance = setBatteryEnd(batteryEnd)
+                        if (dblPotentialDistance < 0) {
+                            self.potentialDistance = ""
+                        } else {
+                            self.potentialDistance = String(format: "%.1f",Double(dblPotentialDistance)/1000.0)+" Ks"
+                        }
                     }
                 }
                 HStack {
@@ -105,7 +115,7 @@ struct LogEntryForm: View {
                 HStack {
                     Text("Potential distance")
                     Spacer()
-                    Text(String(format: "%.1f",self.potentialDistance/1000.0)+" Ks")
+                    Text(self.potentialDistance)
                 }
             }
             .navigationBarTitle("Log Entry")

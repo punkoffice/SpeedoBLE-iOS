@@ -83,7 +83,7 @@ class LogEntryViewController: UIViewController, UIGestureRecognizerDelegate {
                 return potentialDistance
             }
         }
-        return 0
+        return -1.0
     }
     
     func setWheelDrive(text: String) {
