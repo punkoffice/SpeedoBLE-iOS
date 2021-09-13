@@ -8,7 +8,7 @@
 import SwiftUI
 import UIKit
 
-class LoggingFormViewController: UIViewController {
+class LoggingFormViewController: UIViewController, UIGestureRecognizerDelegate {
 
     var mainView: ViewController?
     var childView: UIHostingController<LoggingForm>?
@@ -18,16 +18,26 @@ class LoggingFormViewController: UIViewController {
     
     @IBOutlet var container: UIView!
     
-    func btnStart() {
+    @IBAction func pressedStart(_ sender: UIButton) {
         Global.insertLog(wheelDrive: wheelDrive, wheelSize: wheelSize, battery: batteryLevel)
         mainView?.startLogging()
         dismiss(animated: true, completion: nil)
     }
     
-    func btnCancel() {
+    @IBAction func pressedCancel(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
-
+    
+    @IBAction func tappedView(_ sender: UITapGestureRecognizer) {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if (touch.view!.superclass!.description() == "UITableView") {
+            return true
+        }
+        return false
+    }
     func setWheelDrive(text: String) {
         if (text == "wd2") {
             wheelDrive = 2
@@ -53,11 +63,8 @@ class LoggingFormViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         childView = UIHostingController(rootView: LoggingForm(
-            callbackStart: self.btnStart,
-            callbackCancel: self.btnCancel,
             setWheelDrive: setWheelDrive(text:),
             setWheelSize: setWheelSize(text:),
             setBatteryLevel: setBatteryLevel(text:))
@@ -65,6 +72,7 @@ class LoggingFormViewController: UIViewController {
         addChild(childView!)
         childView!.view.frame = container.bounds
         container.addSubview(childView!.view)
+        container.sendSubviewToBack(childView!.view)
         childView!.didMove(toParent: self)
     }
     

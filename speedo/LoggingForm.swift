@@ -21,15 +21,13 @@ enum wheelSizeOptions: String, CaseIterable, Identifiable {
 }
 
 struct LoggingForm: View {
-    var callbackStart: () -> Void
-    var callbackCancel: () -> Void
     var setWheelDrive: (String) -> Void
     var setWheelSize: (String) -> Void
     var setBatteryLevel: (String) -> Void
+    @State var keyboardVisible = false
     @State var wheelDrive: wheelDriveOptions = .wd4
     @State var wheelSize: wheelSizeOptions = .mm160
     @State var batteryLevel: String = ""
-    
     var body: some View {
         NavigationView {
             Form {
@@ -46,51 +44,15 @@ struct LoggingForm: View {
                 }.onChange(of: wheelSize) { _ in
                     setWheelSize(wheelSize.rawValue)
                 }
-                TextField("Battery level", text: $batteryLevel)        .keyboardType(.numberPad).onChange(of: batteryLevel) { _ in
+                TextField("Battery level", text: $batteryLevel).keyboardType(.numberPad).onChange(of: batteryLevel) { _ in
                     setBatteryLevel(batteryLevel)
                 }
-                buttons(callbackStart: callbackStart, callbackCancel: callbackCancel).padding(.top, 20).padding(.bottom, 20).buttonStyle(BorderlessButtonStyle())
-
             }
             .navigationBarTitle("Board Details")
-        //}.onTapGesture {
-           //self.endEditing()
         }
     }
     
     private func endEditing() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
-    }
-}
-
-struct buttons : View {
-    var callbackStart: () -> Void
-    var callbackCancel: () -> Void
-    var body: some View {
-        HStack {
-            Button(action: callbackStart) {
-                HStack {
-                    Spacer()
-                    Text("Start")
-                        .font(.headline)
-                        .foregroundColor(Color.black)
-                    Spacer()
-                }
-            }
-            .padding(.vertical, 10.0)
-            .background(Color.init(UIColor.lightGray))
-            Spacer(minLength: 20)
-            Button(action: callbackCancel) {
-                HStack {
-                    Spacer()
-                    Text("Cancel")
-                        .font(.headline)
-                        .foregroundColor(Color.black)
-                    Spacer()
-                }
-            }
-            .padding(.vertical, 10.0)
-            .background(Color.red)
-        }
     }
 }

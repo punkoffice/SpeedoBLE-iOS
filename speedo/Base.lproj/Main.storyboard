@@ -146,8 +146,50 @@
                     <view key="view" contentMode="scaleToFill" id="8sQ-RZ-0nD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nsg-CK-Kvx">
+                                <rect key="frame" x="83.5" y="716" width="107" height="55"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="107" id="Mu0-Ll-U1p"/>
+                                    <constraint firstAttribute="height" constant="55" id="SRh-T8-Sb3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <state key="normal" title="START">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressedStart:" destination="Ckw-jE-602" eventType="touchUpInside" id="Zxo-b6-lmv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UCr-3N-PbX">
+                                <rect key="frame" x="223.5" y="716" width="107" height="55"/>
+                                <color key="backgroundColor" red="1" green="0.43120499000000001" blue="0.41740905820000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="107" id="aj2-xH-yDm"/>
+                                    <constraint firstAttribute="height" constant="55" id="ojg-wA-xnq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <state key="normal" title="CANCEL">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressedCancel:" destination="Ckw-jE-602" eventType="touchUpInside" id="sEY-zD-LTQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Tyl-zP-Gt1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="UCr-3N-PbX" firstAttribute="centerY" secondItem="Nsg-CK-Kvx" secondAttribute="centerY" id="7gA-xq-zF8"/>
+                            <constraint firstItem="UCr-3N-PbX" firstAttribute="centerX" secondItem="8sQ-RZ-0nD" secondAttribute="centerX" constant="70" id="FRq-EF-csy"/>
+                            <constraint firstItem="Nsg-CK-Kvx" firstAttribute="centerX" secondItem="8sQ-RZ-0nD" secondAttribute="centerX" constant="-70" id="Nqq-kk-nvU"/>
+                            <constraint firstItem="Tyl-zP-Gt1" firstAttribute="bottom" secondItem="Nsg-CK-Kvx" secondAttribute="bottom" constant="37" id="XK5-v1-ELW"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="0Bs-vo-vaE" appends="YES" id="4S5-Vu-HwI"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="XGu-cy-6ei"/>
                     <connections>
@@ -155,6 +197,12 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mjT-d2-Dmx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="0Bs-vo-vaE">
+                    <connections>
+                        <action selector="tappedView:" destination="Ckw-jE-602" id="rNx-az-gEz"/>
+                        <outlet property="delegate" destination="Ckw-jE-602" id="lSJ-vg-daN"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1537.68115942029" y="-1045.3125"/>
         </scene>
