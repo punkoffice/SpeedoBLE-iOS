@@ -59,6 +59,8 @@ class LoggingFormViewController: UIViewController, UIGestureRecognizerDelegate {
     func setBatteryLevel(text: String) {
         if (text != "") {
             batteryLevel = Int(text)!
+        } else {
+            batteryLevel = -1
         }
     }
 

@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct LogEntryForm: View {
+    var setWheelDrive: (String) -> Void
+    var setWheelSize: (String) -> Void
+    var setBatteryStart: (String) -> Double
+    var setBatteryEnd: (String) -> Double
     var datetime: String
     var pWheelDrive: Int
     var pWheelSize: Int
@@ -16,10 +20,12 @@ struct LogEntryForm: View {
     var pBatteryEnd: Int
     var pDistance: Int
     var pDuration: Int
+    var pPotentialDistance: Double
     @State var wheelDrive: wheelDriveOptions = .wd4
     @State var wheelSize: wheelSizeOptions = .mm160
     @State var batteryStart: String = ""
     @State var batteryEnd: String = ""
+    @State var potentialDistance: Double = 0.0
     var body: some View {
         NavigationView {
             Form {
@@ -37,8 +43,8 @@ struct LogEntryForm: View {
                     } else {
                         wheelDrive = .wd4
                     }
-                //}.onChange(of: wheelDrive) { _ in
-                  //  setWheelDrive(wheelDrive.rawValue)
+                }.onChange(of: wheelDrive) { _ in
+                    setWheelDrive(wheelDrive.rawValue)
                 }
                 Picker("Wheel size", selection: $wheelSize) {
                     Text("120mm").tag(wheelSizeOptions.mm120)
@@ -52,8 +58,8 @@ struct LogEntryForm: View {
                     } else {
                         wheelSize = .mm175
                     }
-                //}.onChange(of: wheelSize) { _ in
-                    //setWheelSize(wheelSize.rawValue)
+                }.onChange(of: wheelSize) { _ in
+                    setWheelSize(wheelSize.rawValue)
                 }
                 HStack {
                     Text("Top speed")
@@ -69,15 +75,27 @@ struct LogEntryForm: View {
                     Text("Battery start")
                     Spacer()
                     TextField("", text: $batteryStart).onAppear() {
-                        batteryStart = pBatteryStart.description
-                    }.keyboardType(.numberPad).foregroundColor(Color.gray).frame(minWidth: 60, maxWidth: 60, alignment: .leading)
+                        if (pBatteryStart == -1) {
+                            batteryStart = ""
+                        } else {
+                            batteryStart = pBatteryStart.description
+                        }
+                    }.keyboardType(.numberPad).foregroundColor(Color.gray).frame(minWidth: 60, maxWidth: 60, alignment: .leading).onChange(of: batteryStart) { _ in
+                        self.potentialDistance = setBatteryStart(batteryStart)
+                    }
                 }
                 HStack {
                     Text("Battery end")
                     Spacer()
                     TextField("", text: $batteryEnd).onAppear() {
-                        batteryEnd = pBatteryEnd.description
-                    }.keyboardType(.numberPad).foregroundColor(Color.gray).frame(minWidth: 60, maxWidth: 60, alignment: .leading)
+                        if (pBatteryEnd == -1) {
+                            batteryEnd = ""
+                        } else {
+                            batteryEnd = pBatteryEnd.description
+                        }
+                    }.keyboardType(.numberPad).foregroundColor(Color.gray).frame(minWidth: 60, maxWidth: 60, alignment: .leading).onChange(of: batteryEnd) { _ in
+                        self.potentialDistance = setBatteryEnd(batteryEnd)
+                    }
                 }
                 HStack {
                     Text("Distance")
@@ -87,7 +105,7 @@ struct LogEntryForm: View {
                 HStack {
                     Text("Potential distance")
                     Spacer()
-                    Text("24ks")
+                    Text(String(format: "%.1f",self.potentialDistance/1000.0)+" Ks")
                 }
             }
             .navigationBarTitle("Log Entry")
@@ -95,8 +113,3 @@ struct LogEntryForm: View {
     }
 }
 
-struct LogEntryForm_Previews: PreviewProvider {
-    static var previews: some View {
-        LogEntryForm(datetime: "2011-10-10 13:10", pWheelDrive: 2, pWheelSize: 160, pTopSpeed: 40, pBatteryStart: 90, pBatteryEnd: 20, pDistance: 3400, pDuration: 30)
-    }
-}
